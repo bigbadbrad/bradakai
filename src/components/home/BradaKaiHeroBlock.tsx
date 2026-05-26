@@ -141,6 +141,7 @@ export const BradaKaiHeroBlock: FC = () => (
             py: { xs: 0.8, md: 1.35 },
             borderRadius: 0,
             '&:hover': { bgcolor: '#a85324' },
+            display: { xs: 'none', sm: 'inline-flex' },
           }}
         >
           Shop t-shirts
