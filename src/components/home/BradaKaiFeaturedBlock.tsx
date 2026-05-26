@@ -14,19 +14,19 @@ import {
 
 const FEATURED_TEES = [
   {
-    src: '/products/frayed-cream.png',
-    alt: 'BradaKai Pacific Coast tee on cream',
-    label: 'Pacific Coast',
+    src: '/product1.png',
+    alt: 'BradaKai product 1 tee',
+    label: 'Product 1',
   },
   {
-    src: '/products/frayed-blue.png',
-    alt: 'BradaKai wave logo tee on navy',
-    label: 'Wave Logo',
+    src: '/product2.png',
+    alt: 'BradaKai product 2 tee',
+    label: 'Product 2',
   },
   {
-    src: '/products/frayed-black.png',
-    alt: 'BradaKai palm script tee on cream',
-    label: 'Palm Script',
+    src: '/product3.png',
+    alt: 'BradaKai product 3 tee',
+    label: 'Product 3',
   },
 ] as const;
 

@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
-import { CONTACT_EMAIL } from '@/lib/legal/site';
+import { CONTACT_EMAIL, LEGAL_ENTITY, SITE_DOMAIN } from '@/lib/legal/site';
 
 /** Shipping Policy — source: `docs/nury_legal_policies_spec.md` §SHIPPING POLICY. */
 export function ShippingPolicySections(): ReactNode {
   return (
     <>
       <p>
-        This Shipping Policy explains how <strong>Nury LLC</strong> (&quot;Nury,&quot; &quot;we,&quot; &quot;us,&quot; or
-        &quot;our&quot;) handles shipping for orders placed through nury.love.
+        This Shipping Policy explains how <strong>{LEGAL_ENTITY}</strong> (&quot;we,&quot; &quot;us,&quot; or
+        &quot;our&quot;) handles shipping for orders placed through {SITE_DOMAIN}.
       </p>
 
       <h2 id="processing">1. Order Processing</h2>

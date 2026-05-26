@@ -1,17 +1,18 @@
 import type { ReactNode } from 'react';
-import { CONTACT_EMAIL } from '@/lib/legal/site';
+import { CONTACT_EMAIL, LEGAL_ENTITY, SITE_DOMAIN } from '@/lib/legal/site';
 
 /** Terms of Service — source: `docs/nury_legal_policies_spec.md` §TERMS OF SERVICE. */
 export function TermsOfServiceSections(): ReactNode {
   return (
     <>
       <p>
-        Welcome to Nury. These Terms of Service (&quot;Terms&quot;) govern your access to and use of nury.love, any
+        Welcome to {LEGAL_ENTITY}. These Terms of Service (&quot;Terms&quot;) govern your access to and use of{' '}
+        {SITE_DOMAIN}, any
         related websites, online stores, checkout pages, content, products, services, emails, social media features,
         and other services that link to these Terms (collectively, the &quot;Site&quot;).
       </p>
       <p>
-        The Site is operated by <strong>Nury LLC</strong> (&quot;Nury,&quot; &quot;we,&quot; &quot;us,&quot; or
+        The Site is operated by <strong>{LEGAL_ENTITY}</strong> (&quot;we,&quot; &quot;us,&quot; or
         &quot;our&quot;). By accessing the Site, placing an order, creating an account, submitting content, or
         otherwise using the Site, you agree to these Terms. If you do not agree, do not use the Site or purchase
         products from us.

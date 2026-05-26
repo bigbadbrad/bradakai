@@ -9,20 +9,20 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL('https://nury.love'),
+  metadataBase: new URL('https://bradakai.com'),
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: 'https://nury.love/hat-sizes',
+    canonical: 'https://bradakai.com/hat-sizes',
   },
   openGraph: {
     title: 'Bucket Hat Size Guide: Fit vs. Silhouette',
     description:
       'Most hat-size charts tell you if a hat fits. Nury explains how a bucket hat will actually look — from crown height and brim width to The Nury Proportion.',
-    url: 'https://nury.love/hat-sizes',
+    url: 'https://bradakai.com/hat-sizes',
     siteName: 'nury',
     type: 'website',
     locale: 'en_US',
@@ -56,13 +56,13 @@ const breadcrumbJsonLd = {
       '@type': 'ListItem',
       position: 1,
       name: 'nury',
-      item: 'https://nury.love/',
+      item: 'https://bradakai.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Hat sizes',
-      item: 'https://nury.love/hat-sizes',
+      item: 'https://bradakai.com/hat-sizes',
     },
   ],
 };

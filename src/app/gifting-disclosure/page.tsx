@@ -6,7 +6,7 @@ import { LegalBreadcrumb } from '@/components/legal/legal-breadcrumb';
 export const metadata: Metadata = {
   title: 'Gifted product disclosure',
   description: 'Disclosure language for creators and recipients of gifted Nury products.',
-  alternates: { canonical: 'https://nury.love/gifting-disclosure' },
+  alternates: { canonical: 'https://bradakai.com/gifting-disclosure' },
 };
 
 const sans = 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';

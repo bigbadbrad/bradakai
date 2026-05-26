@@ -222,7 +222,7 @@ export function WriteReviewModal({ open, onClose, product }: WriteReviewModalPro
             }}
           >
             You must be a <strong style={{ color: '#111827' }}>verified customer</strong> who purchased this product
-            through nury.love for your review to be published.
+            through bradakai.com for your review to be published.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'flex-start' }}>

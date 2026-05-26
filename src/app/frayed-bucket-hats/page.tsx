@@ -9,20 +9,20 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL('https://nury.love'),
+  metadataBase: new URL('https://bradakai.com'),
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: 'https://nury.love/frayed-bucket-hats',
+    canonical: 'https://bradakai.com/frayed-bucket-hats',
   },
   openGraph: {
     title,
     description:
       'Not oversized. Not floppy. Nury frayed bucket hats are designed around The Nury Proportion: 9 cm / 3.5 in crown, 7 cm / 2.75 in brim, and balanced outer silhouette.',
-    url: 'https://nury.love/frayed-bucket-hats',
+    url: 'https://bradakai.com/frayed-bucket-hats',
     siteName: 'nury',
     type: 'website',
     locale: 'en_US',
@@ -56,13 +56,13 @@ const breadcrumbJsonLd = {
       '@type': 'ListItem',
       position: 1,
       name: 'nury',
-      item: 'https://nury.love/',
+      item: 'https://bradakai.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Frayed bucket hats',
-      item: 'https://nury.love/frayed-bucket-hats',
+      item: 'https://bradakai.com/frayed-bucket-hats',
     },
   ],
 };

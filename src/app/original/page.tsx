@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'nury — love-first essentials',
     description: 'nury is for love-first essentials that make your everyday feel special.',
-    url: 'https://nury.love',
+    url: 'https://bradakai.com',
     siteName: 'nury',
     type: 'website',
   },

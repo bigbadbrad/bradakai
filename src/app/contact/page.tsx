@@ -7,8 +7,8 @@ import { CONTACT_EMAIL } from '@/lib/legal/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Contact Nury — ${CONTACT_EMAIL}`,
-  alternates: { canonical: 'https://nury.love/contact' },
+  description: `Contact BradaKai — ${CONTACT_EMAIL}`,
+  alternates: { canonical: 'https://bradakai.com/contact' },
 };
 
 const sans = 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';

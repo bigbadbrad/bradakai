@@ -1,3 +1,4 @@
+import { absoluteUrl } from '@/lib/legal/site';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Box, Container, Typography } from '@mui/material';
@@ -8,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'BradaKai is a surf wear brand with old school spirit — born from van days, dawn patrols, and the California coast.',
   alternates: {
-    canonical: 'https://bradakai.com/about',
+    canonical: absoluteUrl('/about'),
   },
   openGraph: {
     title: 'About BradaKai',
     description:
       'Made by the sea. Worn by the few. Surf wear with timeless coastal style.',
-    url: 'https://bradakai.com/about',
+    url: absoluteUrl('/about'),
     siteName: 'BradaKai',
     type: 'website',
   },
@@ -51,7 +52,7 @@ const sectionBreakMb = { xs: 6, md: 7.5 } as const;
 const ABOUT_HERO_ALT = 'BradaKai surf van on the beach at golden hour';
 
 export default function AboutPage() {
-  const navBleedXs = '64px';
+  const navBleedXs = '80px';
 
   return (
     <Box

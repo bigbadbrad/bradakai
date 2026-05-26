@@ -34,11 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: `https://nury.love/products/${slug}` },
+    alternates: { canonical: `https://bradakai.com/products/${slug}` },
     openGraph: {
       title,
       description,
-      url: `https://nury.love/products/${slug}`,
+      url: `https://bradakai.com/products/${slug}`,
       siteName: 'nury',
       type: 'website',
     },

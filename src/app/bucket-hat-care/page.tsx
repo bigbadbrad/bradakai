@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     'How to clean, dry, and store your bucket hat: cotton, canvas, straw, faux fur, and everyday care tips.',
   alternates: {
-    canonical: 'https://nury.love/bucket-hat-care',
+    canonical: 'https://bradakai.com/bucket-hat-care',
   },
   openGraph: {
     title: 'Bucket Hat Care Guide | nury',
     description:
       'How to clean, dry, and store your bucket hat: cotton, canvas, straw, faux fur, and everyday care tips.',
-    url: 'https://nury.love/bucket-hat-care',
+    url: 'https://bradakai.com/bucket-hat-care',
     siteName: 'nury',
     type: 'website',
   },

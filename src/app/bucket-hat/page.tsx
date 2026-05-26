@@ -9,19 +9,19 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL('https://nury.love'),
+  metadataBase: new URL('https://bradakai.com'),
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: 'https://nury.love/bucket-hat',
+    canonical: 'https://bradakai.com/bucket-hat',
   },
   openGraph: {
     title,
     description,
-    url: 'https://nury.love/bucket-hat',
+    url: 'https://bradakai.com/bucket-hat',
     siteName: 'nury',
     type: 'article',
     locale: 'en_US',
@@ -41,13 +41,13 @@ const breadcrumbJsonLd = {
       '@type': 'ListItem',
       position: 1,
       name: 'nury',
-      item: 'https://nury.love/',
+      item: 'https://bradakai.com/',
     },
     {
       '@type': 'ListItem',
       position: 2,
       name: 'Bucket hat guide',
-      item: 'https://nury.love/bucket-hat',
+      item: 'https://bradakai.com/bucket-hat',
     },
   ],
 };

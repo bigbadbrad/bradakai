@@ -10,6 +10,7 @@ import { LocalizationProvider } from '@/components/core/localization-provider';
 import { ThemeProvider } from '@/components/core/theme-provider/theme-provider';
 import { LayoutWrapper } from '@/components/layout-wrapper';
 import { GoogleAnalytics } from '@/utils/GoogleAnalytics';
+import { SITE_URL } from '@/lib/legal/site';
 
 export const viewport = {
   width: 'device-width',
@@ -19,9 +20,9 @@ export const viewport = {
 } satisfies Viewport;
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bradakai.com'),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: 'https://bradakai.com',
+    canonical: SITE_URL,
   },
   title: {
     default: 'BradaKai — surf wear made by the sea',
@@ -35,11 +36,11 @@ export const metadata: Metadata = {
       'Made by the sea. Worn by the few. Old school spirit. Timeless style.',
     type: 'website',
     locale: 'en_US',
-    url: 'https://bradakai.com',
+    url: SITE_URL,
     siteName: 'BradaKai',
     images: [
       {
-        url: '/hero.png',
+        url: '/hero-16-9.png',
         alt: 'BradaKai',
       },
     ],
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BradaKai — surf wear made by the sea',
     description: 'Made by the sea. Worn by the few.',
-    images: ['/hero.png'],
+    images: ['/hero-16-9.png'],
   },
   icons: {
     icon: [

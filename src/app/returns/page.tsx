@@ -4,8 +4,8 @@ import { ReturnsPolicySections } from '@/lib/legal/returns-sections';
 
 export const metadata: Metadata = {
   title: 'Returns & Exchanges',
-  description: 'Returns, exchanges, and refund policy for nury.love — Nury LLC.',
-  alternates: { canonical: 'https://nury.love/returns' },
+  description: 'Returns, exchanges, and refund policy for bradakai.com — BradaKai.',
+  alternates: { canonical: 'https://bradakai.com/returns' },
 };
 
 export default function ReturnsPage() {

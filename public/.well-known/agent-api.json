@@ -1,12 +1,12 @@
 {
-  "service": "nury-agent-product-api",
-  "description": "Agent-friendly product data for nury.love bucket hats.",
+  "service": "bradakai-agent-product-api",
+  "description": "Agent-friendly product data for bradakai.com bucket hats.",
   "endpoints": {
     "productBySlug": {
       "method": "GET",
       "pathTemplate": "/api/agent/products/{slug}",
-      "slugSource": "Last segment of https://nury.love/products/{slug}",
-      "exampleRequest": "GET https://nury.love/api/agent/products/frayed-edge-bucket-hat-light-blue-denim",
+      "slugSource": "Last segment of https://bradakai.com/products/{slug}",
+      "exampleRequest": "GET https://bradakai.com/api/agent/products/frayed-edge-bucket-hat-light-blue-denim",
       "responseShape": "AgentProduct"
     }
   },

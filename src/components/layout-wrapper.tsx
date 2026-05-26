@@ -11,7 +11,7 @@ interface LayoutWrapperProps {
   children: React.ReactNode;
 }
 
-const NAVBAR_OFFSET = { xs: '64px', md: '72px' };
+const NAVBAR_OFFSET = { xs: '80px', md: '104px' };
 
 export function LayoutWrapper({ children }: LayoutWrapperProps) {
   const pathname = usePathname();

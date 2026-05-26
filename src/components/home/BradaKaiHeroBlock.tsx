@@ -11,7 +11,9 @@ import {
   bradakaiDisplaySx,
 } from '@/lib/bradakai/brand';
 
-const HERO_MIN_HEIGHT = { xs: 'min(72vh, 640px)', md: 'min(78vh, 720px)' };
+const HERO_SRC = '/hero-16-9.png';
+const HERO_WIDTH = 1672;
+const HERO_HEIGHT = 941;
 
 /** Deckled bottom edge — cream fill matches featured section below. */
 function TornPaperEdge() {
@@ -44,18 +46,17 @@ export const BradaKaiHeroBlock: FC = () => (
     sx={{
       position: 'relative',
       width: '100%',
-      minHeight: HERO_MIN_HEIGHT,
-      overflow: 'hidden',
-      bgcolor: '#2a3540',
+      bgcolor: BRADAKAI_CREAM,
     }}
   >
     <Image
-      src="/hero.png"
+      src={HERO_SRC}
       alt="Vintage surf van on the beach with BradaKai boards"
-      fill
+      width={HERO_WIDTH}
+      height={HERO_HEIGHT}
       priority
       sizes="100vw"
-      style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
+      style={{ width: '100%', height: 'auto', display: 'block' }}
     />
 
     <Box
@@ -68,52 +69,60 @@ export const BradaKaiHeroBlock: FC = () => (
           md: 'linear-gradient(90deg, rgba(245,240,232,0.92) 0%, rgba(245,240,232,0.75) 38%, rgba(245,240,232,0.15) 58%, transparent 72%)',
         },
         zIndex: 1,
+        pointerEvents: 'none',
       }}
     />
 
     <Box
       sx={{
-        position: 'relative',
+        position: 'absolute',
+        inset: 0,
         zIndex: 2,
-        minHeight: HERO_MIN_HEIGHT,
         display: 'flex',
         alignItems: 'center',
         px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-        py: { xs: 6, md: 8 },
+        py: { xs: 4, md: 6 },
       }}
     >
-      <Box sx={{ maxWidth: { xs: '100%', md: 520 } }}>
+      <Box sx={{ maxWidth: { xs: 320, sm: 420, md: 520 } }}>
         <Typography
           component="h1"
           sx={{
             ...bradakaiDisplaySx,
-            fontSize: { xs: '2.35rem', sm: '2.85rem', md: '3.5rem' },
+            fontFamily: '"old-press", "Old Press", "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontSize: { xs: '1.45rem', sm: '2.5rem', md: '3.5rem' },
             lineHeight: 1.05,
             color: { xs: BRADAKAI_CREAM, md: BRADAKAI_NAVY },
-            mb: { xs: 1.5, md: 2 },
+            mb: { xs: 1, md: 2 },
             textShadow: {
               xs: '0 2px 24px rgba(0,0,0,0.35)',
               md: 'none',
             },
           }}
         >
-          Made by the sea.
+          MADE BY
           <br />
-          Worn by the few.
+          THE SEA.
+          <br />
+          WORN BY
+          <br />
+          THE FEW.
         </Typography>
 
         <Typography
           component="p"
           sx={{
             ...bradakaiDisplaySx,
-            fontSize: { xs: '1rem', md: '1.15rem' },
-            letterSpacing: '0.14em',
+            fontSize: { xs: '0.75rem', sm: '1rem', md: '1.15rem' },
+            letterSpacing: { xs: '0.1em', md: '0.14em' },
             color: { xs: 'rgba(245,240,232,0.92)', md: BRADAKAI_NAVY },
-            mb: { xs: 3, md: 4 },
+            mb: { xs: 2, md: 4 },
             textShadow: { xs: '0 1px 12px rgba(0,0,0,0.3)', md: 'none' },
           }}
         >
-          Old school spirit. Timeless style.
+          OLD SCHOOL SPIRIT.
+          <br />
+          TIMELESS STYLE.
         </Typography>
 
         <Button
@@ -123,12 +132,12 @@ export const BradaKaiHeroBlock: FC = () => (
           disableElevation
           sx={{
             ...bradakaiDisplaySx,
-            fontSize: '1rem',
-            letterSpacing: '0.14em',
+            fontSize: { xs: '0.8rem', md: '1rem' },
+            letterSpacing: { xs: '0.1em', md: '0.14em' },
             bgcolor: BRADAKAI_ORANGE,
             color: '#fff',
-            px: 3.5,
-            py: 1.35,
+            px: { xs: 2.25, md: 3.5 },
+            py: { xs: 0.9, md: 1.35 },
             borderRadius: 0,
             '&:hover': { bgcolor: '#a85324' },
           }}

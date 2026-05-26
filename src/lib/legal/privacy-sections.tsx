@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
-import { CONTACT_EMAIL } from '@/lib/legal/site';
+import { CONTACT_EMAIL, LEGAL_ENTITY, SITE_DOMAIN } from '@/lib/legal/site';
 
 /** Privacy Policy — source: `docs/nury_legal_policies_spec.md` §PRIVACY POLICY. */
 export function PrivacyPolicySections(): ReactNode {
   return (
     <>
       <p>
-        This Privacy Policy explains how <strong>Nury LLC</strong> (&quot;Nury,&quot; &quot;we,&quot; &quot;us,&quot; or
-        &quot;our&quot;) collects, uses, discloses, and protects personal information when you visit nury.love, place an
+        This Privacy Policy explains how <strong>{LEGAL_ENTITY}</strong> (&quot;we,&quot; &quot;us,&quot; or
+        &quot;our&quot;) collects, uses, discloses, and protects personal information when you visit {SITE_DOMAIN}, place an
         order, contact us, subscribe to our emails, interact with our advertising or social media, or otherwise use our
         websites, online store, or related services that link to this Privacy Policy (collectively, the
         &quot;Site&quot;).

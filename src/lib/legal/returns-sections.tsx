@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
-import { CONTACT_EMAIL } from '@/lib/legal/site';
+import { CONTACT_EMAIL, LEGAL_ENTITY, SITE_DOMAIN } from '@/lib/legal/site';
 
 /** Returns & Exchanges Policy + return workflow — source: `docs/nury_legal_policies_spec.md`. */
 export function ReturnsPolicySections(): ReactNode {
   return (
     <>
       <p>
-        This Returns &amp; Exchanges Policy explains how <strong>Nury LLC</strong> (&quot;Nury,&quot; &quot;we,&quot;
-        &quot;us,&quot; or &quot;our&quot;) handles returns and exchanges for products purchased through nury.love.
+        This Returns &amp; Exchanges Policy explains how <strong>{LEGAL_ENTITY}</strong> (&quot;we,&quot; &quot;us,&quot;
+        or &quot;our&quot;) handles returns and exchanges for products purchased through {SITE_DOMAIN}.
       </p>
 
       <h2 id="window">1. Return Window</h2>

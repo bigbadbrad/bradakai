@@ -1,4 +1,6 @@
 /** BradaKai surf wear — palette and typography tokens from /docs mockup. */
+export { SITE_DOMAIN, SITE_URL, absoluteUrl } from '@/lib/legal/site';
+
 export const BRADAKAI_CREAM = '#f5f0e8';
 export const BRADAKAI_NAVY = '#1e3a5f';
 export const BRADAKAI_ORANGE = '#c4622d';
