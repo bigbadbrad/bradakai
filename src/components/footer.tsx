@@ -115,11 +115,23 @@ export const Footer: FC = () => {
             textAlign: 'center',
           }}
         >
-          <Link href="/" aria-label="BradaKai home" style={{ display: 'inline-flex', justifyContent: 'center' }}>
-            <Box sx={{ width: { xs: 120, md: 140 }, mb: 2, mx: 'auto', filter: 'brightness(0) invert(1)' }}>
+          <Link href="/" aria-label="BradaKai home" style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Box sx={{ width: { xs: 120, md: 140 }, mb: 1.5, mx: 'auto', filter: 'brightness(0) invert(1)' }}>
               <Image src="/logo.png" alt="" width={280} height={84} style={{ width: '100%', height: 'auto' }} />
             </Box>
           </Link>
+          <Typography
+            sx={{
+              fontFamily: 'var(--font-old-press), "Bebas Neue", system-ui, sans-serif',
+              fontSize: { xs: '1.1rem', md: '1.25rem' },
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              color: BRADAKAI_CREAM,
+              mb: 2,
+            }}
+          >
+            Ocean bros only.
+          </Typography>
           <Typography sx={{ fontSize: '0.78rem' }}>
             © {new Date().getFullYear()} BradaKai
             <br />

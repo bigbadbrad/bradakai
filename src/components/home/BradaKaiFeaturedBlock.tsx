@@ -57,7 +57,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
               mb: 1.5,
             }}
           >
-            The originals
+            Ocean bros only
           </Typography>
 
           <Typography
@@ -70,7 +70,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
               mb: 2,
             }}
           >
-            Quality threads.
+            Tribe threads.
             <br />
             Built to last.
           </Typography>
@@ -84,7 +84,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
               mb: 3,
             }}
           >
-            Heavyweight tees. Classic fits. Inspired by the past, made for today.
+            Heavyweight tees for the crew. Classic fits for dawn patrol, beach fires, and the long days that end with salt on your skin.
           </Typography>
 
           <Typography

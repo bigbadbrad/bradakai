@@ -22,9 +22,6 @@ export const metadata: Metadata = {
 
 const sans = 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
 
-/** Matches PDP Details heading lines (`product-pdp.module.css` `.detailsHeadingLine`). */
-const sectionRuleColor = '#d6cbbd';
-
 const stanzaSx = {
   fontFamily: sans,
   color: '#3f3a36',
@@ -34,19 +31,6 @@ const stanzaSx = {
   whiteSpace: 'pre-line' as const,
   maxWidth: '100%',
 } as const;
-
-/** 1px rule + vertical rhythm; matches PDP Details `.detailsHeadingLine` color. */
-const sectionRuleSx = {
-  width: '100%',
-  maxWidth: '100%',
-  height: '1px',
-  flexShrink: 0,
-  bgcolor: sectionRuleColor,
-  my: { xs: 3, md: 3.75 },
-} as const;
-
-/** Same vertical gap as a section rule: `my` above + 1px + `my` below (line omitted). */
-const sectionBreakMb = { xs: 6, md: 7.5 } as const;
 
 const ABOUT_HERO_ALT = 'BradaKai surf van on the beach at golden hour';
 
@@ -117,39 +101,21 @@ export default function AboutPage() {
 
 Ocean bros only.
 
-It's a line in the sand — and in the water. You know the crew: the ones who wake up before the crowd, who know which break is firing, who'd rather share a dawn session than post about it later.`}
-            </Typography>
+This is for the people who feel more at home near the water than anywhere else. The ones who plan their days around tides, swell, wind, and sunset. The ones who know the smell of salt air before they even see the ocean.
 
-            <Box role="presentation" sx={sectionRuleSx} aria-hidden />
+Built from dawn patrol mornings, cold beer in the sand, beach fires that stay lit long after dark, sea turtles gliding through clear water, sun-faded surfboards, cracked parking lots above the break, and the sound of waves rolling in while the whole crew watches the horizon.
 
-            <Typography sx={{ ...stanzaSx, mb: sectionBreakMb }}>
-              {`We're a tribe, not a trend.
+This is the ocean life. The breeze. The salt. The long summer days that nobody wants to end.
 
-BradaKai is surf wear for people who belong out there — van in the lot, boards on the roof, salt still on your skin when you pull on a tee. Old school cuts. Heavyweight fabric. Graphics that look like they came off a board, not a mood board.
+We're protecting a feeling.
 
-You wear it because you're part of something. Not because an algorithm told you to.`}
-            </Typography>
+A tribe built around the water and the people who belong there.
 
-            <Typography sx={stanzaSx}>
-              {`The gear is simple on purpose.
+If you know, you know.
 
-Built to last through seasons of sessions, road trips, and the kind of days that don't need a caption. Sun-faded. Road-worn. Still solid when the swell picks up and the whole crew paddles out together.`}
-            </Typography>
+BradaKai.
 
-            <Box role="presentation" sx={sectionRuleSx} aria-hidden />
-
-            <Typography sx={stanzaSx}>
-              {`Ocean bros only.
-
-That's the whole point. If you're in, you're in.`}
-            </Typography>
-
-            <Box role="presentation" sx={sectionRuleSx} aria-hidden />
-
-            <Typography sx={stanzaSx}>
-              {`California coast. Dawn patrol. Your people.
-
-Welcome to the tribe.`}
+Ocean bros only.`}
             </Typography>
           </Box>
         </Box>
