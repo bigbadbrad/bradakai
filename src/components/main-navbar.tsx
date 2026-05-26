@@ -26,6 +26,7 @@ import {
   BRADAKAI_ORANGE,
   bradakaiNavLinkSx,
 } from '@/lib/bradakai/brand';
+import { isCommerceHref, PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 
 const DESKTOP_GLYPH_PX = 20;
 const MOBILE_MENU_GLYPH_PX = 22;
@@ -62,6 +63,8 @@ const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Lookbook', href: '/lookbook' },
 ] as const;
+
+const ACTIVE_NAV_LINKS = NAV_LINKS.filter((item) => PRODUCT_LINKS_ENABLED || !isCommerceHref(item.href));
 
 const SHOP_LINKS = [
   { label: 'T-Shirts', href: '/shop' },
@@ -178,52 +181,56 @@ export const MainNavbar: FC = () => {
               gap: { md: 2.5, lg: 3.5 },
             }}
           >
-            <Button
-              onClick={(e) => setShopAnchorEl(e.currentTarget)}
-              endIcon={<KeyboardArrowDownIcon sx={{ fontSize: '1.1rem !important', color: BRADAKAI_NAVY }} />}
-              sx={{
-                ...bradakaiNavLinkSx,
-                minWidth: 0,
-                p: 0,
-                '&:hover': { bgcolor: 'transparent' },
-              }}
-            >
-              Shop
-            </Button>
-            <Menu
-              anchorEl={shopAnchorEl}
-              open={Boolean(shopAnchorEl)}
-              onClose={() => setShopAnchorEl(null)}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              slotProps={{
-                paper: {
-                  sx: {
-                    mt: 1,
-                    bgcolor: BRADAKAI_CREAM,
-                    border: `1px solid rgba(30, 58, 95, 0.12)`,
-                    boxShadow: '0 8px 24px rgba(30, 58, 95, 0.12)',
-                  },
-                },
-              }}
-            >
-              {SHOP_LINKS.map((item) => (
-                <MenuItem
-                  key={item.href}
-                  component={Link}
-                  href={item.href}
-                  onClick={() => setShopAnchorEl(null)}
-                  sx={{ ...bradakaiNavLinkSx, fontSize: '0.85rem', py: 1.25 }}
+            {PRODUCT_LINKS_ENABLED ? (
+              <>
+                <Button
+                  onClick={(e) => setShopAnchorEl(e.currentTarget)}
+                  endIcon={<KeyboardArrowDownIcon sx={{ fontSize: '1.1rem !important', color: BRADAKAI_NAVY }} />}
+                  sx={{
+                    ...bradakaiNavLinkSx,
+                    minWidth: 0,
+                    p: 0,
+                    '&:hover': { bgcolor: 'transparent' },
+                  }}
                 >
-                  {item.label}
-                </MenuItem>
-              ))}
-            </Menu>
-            {NAV_LINKS.map((item) => (
-              <Box key={item.href} component={Link} href={item.href} sx={bradakaiNavLinkSx}>
-                {item.label}
-              </Box>
-            ))}
+                  Shop
+                </Button>
+                <Menu
+                  anchorEl={shopAnchorEl}
+                  open={Boolean(shopAnchorEl)}
+                  onClose={() => setShopAnchorEl(null)}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                  slotProps={{
+                    paper: {
+                      sx: {
+                        mt: 1,
+                        bgcolor: BRADAKAI_CREAM,
+                        border: `1px solid rgba(30, 58, 95, 0.12)`,
+                        boxShadow: '0 8px 24px rgba(30, 58, 95, 0.12)',
+                      },
+                    },
+                  }}
+                >
+                  {SHOP_LINKS.map((item) => (
+                    <MenuItem
+                      key={item.href}
+                      component={Link}
+                      href={item.href}
+                      onClick={() => setShopAnchorEl(null)}
+                      sx={{ ...bradakaiNavLinkSx, fontSize: '0.85rem', py: 1.25 }}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </>
+            ) : null}
+      {ACTIVE_NAV_LINKS.map((item) => (
+        <Box key={item.href} component={Link} href={item.href} sx={bradakaiNavLinkSx}>
+          {item.label}
+        </Box>
+      ))}
           </Box>
 
           <Box

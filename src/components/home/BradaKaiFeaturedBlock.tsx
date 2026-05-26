@@ -1,7 +1,6 @@
 'use client';
 
 import type { FC } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Box, Container, Typography } from '@mui/material';
 import {
@@ -11,7 +10,6 @@ import {
   BRADAKAI_NAVY_MUTED,
   bradakaiDisplaySx,
 } from '@/lib/bradakai/brand';
-
 const FEATURED_TEES = [
   {
     src: '/product1.png',
@@ -90,15 +88,13 @@ export const BradaKaiFeaturedBlock: FC = () => (
           </Typography>
 
           <Typography
-            component={Link}
-            href="/shop"
+            component="p"
             sx={{
               ...bradakaiDisplaySx,
               fontSize: '0.9rem',
               color: BRADAKAI_ORANGE,
-              textDecoration: 'none',
               letterSpacing: '0.16em',
-              '&:hover': { textDecoration: 'underline', textUnderlineOffset: '0.2em' },
+              m: 0,
             }}
           >
             Shop the collection →
@@ -115,20 +111,11 @@ export const BradaKaiFeaturedBlock: FC = () => (
           {FEATURED_TEES.map((tee) => (
             <Box
               key={tee.label}
-              component={Link}
-              href="/shop"
               sx={{
-                textDecoration: 'none',
-                color: 'inherit',
                 bgcolor: '#fff',
                 borderRadius: 0.5,
                 overflow: 'hidden',
                 boxShadow: '0 4px 20px rgba(30,58,95,0.08)',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: '0 12px 28px rgba(30,58,95,0.14)',
-                },
               }}
             >
               <Box sx={{ position: 'relative', aspectRatio: '1 / 1' }}>

@@ -11,6 +11,7 @@ import {
   POPULAR_BUCKET_HATS_SECTION_TITLE,
 } from '@/lib/shopify/mock-storefront';
 import { ivySectionTitleSmSx } from '@/lib/typography/ivy-presto';
+import { isCommerceHref, PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 
 export type PopularBucketHatsBlockProps = {
   /** Catalogue SKUs to show; defaults to homepage Explore Icons list. */
@@ -74,23 +75,33 @@ export const PopularBucketHatsBlock: FC<PopularBucketHatsBlockProps> = ({
             alignItems: 'start',
           }}
         >
-          {rows.map((row) => (
-            <Box key={row.sku} sx={{ width: '100%', minWidth: 0 }}>
-              <Link
-                href={`/products/${row.slug}`}
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-              >
-                <PopularHatProductTile
-                  row={row}
-                  compact={compactGrid}
-                  homepageMobileMeta
-                  productCardTreatment={POPULAR_BUCKET_HATS_PRODUCT_CARD_TREATMENT_ENABLED}
-                />
-              </Link>
-            </Box>
-          ))}
+          {rows.map((row) => {
+            const tile = (
+              <PopularHatProductTile
+                row={row}
+                compact={compactGrid}
+                homepageMobileMeta
+                productCardTreatment={POPULAR_BUCKET_HATS_PRODUCT_CARD_TREATMENT_ENABLED}
+              />
+            );
+
+            return (
+              <Box key={row.sku} sx={{ width: '100%', minWidth: 0 }}>
+                {PRODUCT_LINKS_ENABLED ? (
+                  <Link
+                    href={`/products/${row.slug}`}
+                    style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                  >
+                    {tile}
+                  </Link>
+                ) : (
+                  tile
+                )}
+              </Box>
+            );
+          })}
         </Box>
-        {collectionHref ? (
+        {collectionHref && PRODUCT_LINKS_ENABLED && !isCommerceHref(collectionHref) ? (
           <Box sx={{ textAlign: 'center', mt: 5 }}>
             <Typography
               component={Link}

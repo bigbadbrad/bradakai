@@ -7,6 +7,7 @@ import { PopularHatProductTile } from '@/components/product/popular-hat-product-
 import { FRAYED_BUCKET_HAT_PAGE_SKUS } from '@/lib/frayed-bucket-hats/page-content';
 import { getPopularBucketHatHomeRowsForSkus } from '@/lib/shopify/mock-storefront';
 import { h2Sx } from '@/components/bucket-hats/constants';
+import { PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 
 export const FrayedBucketHatProductGrid: FC = () => {
   const rows = getPopularBucketHatHomeRowsForSkus(FRAYED_BUCKET_HAT_PAGE_SKUS);
@@ -48,16 +49,23 @@ export const FrayedBucketHatProductGrid: FC = () => {
             alignItems: 'start',
           }}
         >
-          {rows.map((row) => (
-            <Box key={row.sku} sx={{ width: '100%', minWidth: 0 }}>
-              <Link
-                href={`/products/${row.slug}`}
-                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-              >
-                <PopularHatProductTile row={row} homepageMobileMeta />
-              </Link>
-            </Box>
-          ))}
+          {rows.map((row) => {
+            const tile = <PopularHatProductTile row={row} homepageMobileMeta />;
+            return (
+              <Box key={row.sku} sx={{ width: '100%', minWidth: 0 }}>
+                {PRODUCT_LINKS_ENABLED ? (
+                  <Link
+                    href={`/products/${row.slug}`}
+                    style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                  >
+                    {tile}
+                  </Link>
+                ) : (
+                  tile
+                )}
+              </Box>
+            );
+          })}
         </Box>
       </Container>
     </Box>

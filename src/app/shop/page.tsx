@@ -32,11 +32,7 @@ export default function ShopPage() {
           Heavyweight threads built for the coast. More styles coming soon — for now, explore what&apos;s in stock.
         </Typography>
       </Container>
-      <PopularBucketHatsBlock
-        sectionTitle="In the lineup"
-        collectionHref="/collections"
-        collectionLinkLabel="View collections"
-      />
+      <PopularBucketHatsBlock sectionTitle="In the lineup" />
     </Box>
   );
 }

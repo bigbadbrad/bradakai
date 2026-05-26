@@ -1,13 +1,11 @@
 'use client';
 
 import type { FC } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   BRADAKAI_CREAM,
   BRADAKAI_NAVY,
-  BRADAKAI_ORANGE,
   bradakaiDisplaySx,
 } from '@/lib/bradakai/brand';
 
@@ -125,27 +123,6 @@ export const BradaKaiHeroBlock: FC = () => (
           <br />
           TIMELESS STYLE.
         </Typography>
-
-        <Button
-          component={Link}
-          href="/shop"
-          variant="contained"
-          disableElevation
-          sx={{
-            ...bradakaiDisplaySx,
-            fontSize: { xs: '0.8rem', md: '1rem' },
-            letterSpacing: { xs: '0.1em', md: '0.14em' },
-            bgcolor: BRADAKAI_ORANGE,
-            color: '#fff',
-            px: { xs: 2.1, md: 3.5 },
-            py: { xs: 0.8, md: 1.35 },
-            borderRadius: 0,
-            '&:hover': { bgcolor: '#a85324' },
-            display: { xs: 'none', sm: 'inline-flex' },
-          }}
-        >
-          Shop t-shirts
-        </Button>
       </Box>
     </Box>
 

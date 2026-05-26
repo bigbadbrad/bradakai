@@ -38,6 +38,7 @@ import {
   STYLING_TILES,
 } from '@/lib/frayed-bucket-hats/page-content';
 import { getProductCanonicalSlug } from '@/lib/shopify/mock-storefront';
+import { PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 import { FrayedBucketHatProductGrid } from './FrayedBucketHatProductGrid';
 import { FrayedBucketHatsFaqSection } from './FrayedBucketHatsFaqSection';
 
@@ -451,13 +452,15 @@ export const FrayedBucketHatsPage: FC = () => {
               Explore the world of Nury
             </MuiLink>
           </li>
-          {internalProductLinks.map((link) => (
-            <li key={link.href}>
-              <MuiLink component={Link} href={link.href} sx={guideInlineLinkSx}>
-                {link.label}
-              </MuiLink>
-            </li>
-          ))}
+          {PRODUCT_LINKS_ENABLED
+            ? internalProductLinks.map((link) => (
+                <li key={link.href}>
+                  <MuiLink component={Link} href={link.href} sx={guideInlineLinkSx}>
+                    {link.label}
+                  </MuiLink>
+                </li>
+              ))
+            : null}
         </Box>
       </SectionShell>
 

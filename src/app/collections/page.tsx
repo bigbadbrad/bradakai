@@ -32,7 +32,7 @@ export default function CollectionsPage() {
           The originals and coastal favorites — curated for riders who keep it old school.
         </Typography>
       </Container>
-      <PopularBucketHatsBlock sectionTitle="Explore" collectionHref="/shop" collectionLinkLabel="Shop all" />
+      <PopularBucketHatsBlock sectionTitle="Explore" />
     </Box>
   );
 }

@@ -40,6 +40,7 @@ import {
   NURY_FIT_NOTES_ROWS,
 } from '@/lib/hat-sizes/page-content';
 import { getProductCanonicalSlug } from '@/lib/shopify/mock-storefront';
+import { PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 import { HatSizesFaqSection } from './HatSizesFaqSection';
 
 function SectionShell({
@@ -462,13 +463,15 @@ export const HatSizesPage: FC = () => {
               Bucket hat care: cleaning and storage
             </MuiLink>
           </li>
-          {INTERNAL_PRODUCT_LINKS.map(({ label, handle }) => (
-            <li key={handle}>
-              <MuiLink component={Link} href={`/products/${getProductCanonicalSlug(handle)}`} sx={guideInlineLinkSx}>
-                {label}
-              </MuiLink>
-            </li>
-          ))}
+          {PRODUCT_LINKS_ENABLED
+            ? INTERNAL_PRODUCT_LINKS.map(({ label, handle }) => (
+                <li key={handle}>
+                  <MuiLink component={Link} href={`/products/${getProductCanonicalSlug(handle)}`} sx={guideInlineLinkSx}>
+                    {label}
+                  </MuiLink>
+                </li>
+              ))
+            : null}
         </Box>
       </SectionShell>
 

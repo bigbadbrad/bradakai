@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { BRADAKAI_CREAM, BRADAKAI_NAVY, bradakaiDisplaySx } from '@/lib/bradakai/brand';
+import { isCommerceHref, PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 
 export const Footer: FC = () => {
   const customerServiceLinks = [
@@ -20,7 +21,7 @@ export const Footer: FC = () => {
     { label: 'Shop', href: '/shop' },
     { label: 'Collections', href: '/collections' },
     { label: 'Lookbook', href: '/lookbook' },
-  ] as const;
+  ].filter((item) => PRODUCT_LINKS_ENABLED || !isCommerceHref(item.href));
 
   const aboutLinks = [
     { label: 'About', href: '/about' },
