@@ -6,7 +6,6 @@ import { Box, Typography } from '@mui/material';
 import {
   BRADAKAI_CREAM,
   BRADAKAI_NAVY,
-  bradakaiDisplaySx,
 } from '@/lib/bradakai/brand';
 
 const HERO_SRC = '/hero-16-9.png';
@@ -79,18 +78,20 @@ export const BradaKaiHeroBlock: FC = () => (
         display: 'flex',
         alignItems: { xs: 'flex-start', md: 'center' },
         px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-        pt: { xs: 3.5, md: 6 },
+        pt: { xs: 7, sm: 5, md: 6 },
         pb: { xs: 1.5, md: 6 },
       }}
     >
-      <Box sx={{ maxWidth: { xs: 320, sm: 420, md: 520 } }}>
+      <Box sx={{ maxWidth: { xs: 360, sm: 480, md: 640, lg: 720 } }}>
         <Typography
           component="h1"
           sx={{
-            ...bradakaiDisplaySx,
-            fontFamily: '"old-press", "Old Press", "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-            fontSize: { xs: '1.35rem', sm: '2.5rem', md: '3.5rem' },
-            lineHeight: 1.05,
+            fontFamily: 'var(--font-old-press), "Bebas Neue", system-ui, sans-serif',
+            fontWeight: 400,
+            fontSize: { xs: '2.75rem', sm: '4.25rem', md: '5.5rem', lg: '6.5rem' },
+            lineHeight: 0.95,
+            letterSpacing: '0.03em',
+            textTransform: 'uppercase',
             color: { xs: BRADAKAI_CREAM, md: BRADAKAI_NAVY },
             mb: { xs: 0.75, md: 2 },
             textShadow: {
@@ -99,16 +100,14 @@ export const BradaKaiHeroBlock: FC = () => (
             },
           }}
         >
-          MADE BY
+          OCEAN
           <br />
-          THE SEA.
+          BROS
           <br />
-          WORN BY
-          <br />
-          THE FEW.
+          ONLY.
         </Typography>
 
-        <Typography
+        {/* <Typography
           component="p"
           sx={{
             ...bradakaiDisplaySx,
@@ -122,7 +121,7 @@ export const BradaKaiHeroBlock: FC = () => (
           OLD SCHOOL SPIRIT.
           <br />
           TIMELESS STYLE.
-        </Typography>
+        </Typography> */}
       </Box>
     </Box>
 

@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/core/theme-provider/theme-provider';
 import { LayoutWrapper } from '@/components/layout-wrapper';
 import { GoogleAnalytics } from '@/utils/GoogleAnalytics';
 import { SITE_URL } from '@/lib/legal/site';
+import { oldPress } from '@/lib/fonts/old-press';
 
 export const viewport = {
   width: 'device-width',
@@ -77,7 +78,7 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/usd3daq.css" />
       </head>
-      <body>
+      <body className={oldPress.variable}>
         <GoogleAnalytics />
         <LocalizationProvider>
           <UserProvider>
