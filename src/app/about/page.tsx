@@ -7,14 +7,13 @@ import { pageH1Sx } from '@/components/bucket-hats/constants';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'BradaKai is a surf wear brand with old school spirit — born from van days, dawn patrols, and the California coast.',
+    'BradaKai is surf wear for the tribe — ocean bros only. Old school spirit, built for the crew that shows up at dawn.',
   alternates: {
     canonical: absoluteUrl('/about'),
   },
   openGraph: {
     title: 'About BradaKai',
-    description:
-      'Made by the sea. Worn by the few. Surf wear with timeless coastal style.',
+    description: 'Ocean bros only. Surf wear for the tribe — not everyone gets in.',
     url: absoluteUrl('/about'),
     siteName: 'BradaKai',
     type: 'website',
@@ -114,43 +113,43 @@ export default function AboutPage() {
             </Typography>
 
             <Typography sx={stanzaSx}>
-              {`BradaKai started on the sand — not in a boardroom.
+              {`BradaKai isn't for everyone.
 
-A beat-up van. Boards on the roof. Salt on everything.
-Golden hour stretching forever.
-The kind of day you don't post about because you were too busy living it.`}
+Ocean bros only.
+
+It's a line in the sand — and in the water. You know the crew: the ones who wake up before the crowd, who know which break is firing, who'd rather share a dawn session than post about it later.`}
             </Typography>
 
             <Box role="presentation" sx={sectionRuleSx} aria-hidden />
 
             <Typography sx={{ ...stanzaSx, mb: sectionBreakMb }}>
-              {`We're a surf wear brand in spirit, not in hype.
+              {`We're a tribe, not a trend.
 
-Old school cuts. Heavyweight tees.
-Graphics that feel hand-drawn, not focus-grouped.
-Built for people who'd rather be in the water than on a feed.`}
+BradaKai is surf wear for people who belong out there — van in the lot, boards on the roof, salt still on your skin when you pull on a tee. Old school cuts. Heavyweight fabric. Graphics that look like they came off a board, not a mood board.
+
+You wear it because you're part of something. Not because an algorithm told you to.`}
             </Typography>
 
             <Typography sx={stanzaSx}>
-              {`Every piece is made to age with you —
-sun-faded, road-worn, still holding its shape
-when the session runs long.`}
-            </Typography>
+              {`The gear is simple on purpose.
 
-            <Box role="presentation" sx={sectionRuleSx} aria-hidden />
-
-            <Typography sx={stanzaSx}>
-              {`Made by the sea.
-Worn by the few.
-
-That's the whole idea.`}
+Built to last through seasons of sessions, road trips, and the kind of days that don't need a caption. Sun-faded. Road-worn. Still solid when the swell picks up and the whole crew paddles out together.`}
             </Typography>
 
             <Box role="presentation" sx={sectionRuleSx} aria-hidden />
 
             <Typography sx={stanzaSx}>
-              {`This is California — the real version.
-Van days. Dawn patrol. Timeless style.`}
+              {`Ocean bros only.
+
+That's the whole point. If you're in, you're in.`}
+            </Typography>
+
+            <Box role="presentation" sx={sectionRuleSx} aria-hidden />
+
+            <Typography sx={stanzaSx}>
+              {`California coast. Dawn patrol. Your people.
+
+Welcome to the tribe.`}
             </Typography>
           </Box>
         </Box>
