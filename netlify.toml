@@ -1,0 +1,14 @@
+# Netlify build config for Next.js 15
+# Netlify auto-detects Next.js and uses the OpenNext adapter (no plugin needed).
+# https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview
+#
+# Forms: "product-review" is registered from public/netlify-forms-product-review.html
+# at deploy time. The app POSTs to /netlify-forms-product-review.html (not /) — see OpenNext + Netlify Forms.
+# Submissions: Site configuration → Forms → product-review (notifications, spam).
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"

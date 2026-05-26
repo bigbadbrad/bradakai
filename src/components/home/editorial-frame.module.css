@@ -1,0 +1,28 @@
+/* Frame only at `md` and up — matches HomepageEditorialSection full-bleed breakpoint (900px). */
+.editorialFrame {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.editorialFrameInner {
+  line-height: 0;
+}
+
+.editorialFrameInner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .editorialFrame {
+    background: #f7f1e8;
+    border: 1px solid rgba(31, 34, 38, 0.18);
+    padding: 14px;
+  }
+
+  .editorialFrameInner {
+    border: 1px solid rgba(31, 34, 38, 0.08);
+    background: #fbf8f2;
+  }
+}

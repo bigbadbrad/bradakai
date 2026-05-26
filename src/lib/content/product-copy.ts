@@ -1,0 +1,4 @@
+export const HOMEPAGE_BUCKET_HAT_NAME = 'The Nury Bucket';
+
+export const HOMEPAGE_BUCKET_HAT_HERO_LINE_1 = 'THE NURY';
+export const HOMEPAGE_BUCKET_HAT_HERO_LINE_2 = 'BUCKET';

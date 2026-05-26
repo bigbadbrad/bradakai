@@ -1,0 +1,17 @@
+.productCard {
+  background: #f8f4ed;
+  border: 1px solid rgba(31, 34, 38, 0.1);
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.productImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #fbf8f3;
+  border: 1px solid rgba(31, 34, 38, 0.06);
+  line-height: 0;
+}

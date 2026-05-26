@@ -1,0 +1,158 @@
+/* Screen + print: footer heart icon at exactly 30mm height (physical print). */
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.lead {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #374151;
+  margin: 0 0 20px;
+}
+
+.sheet {
+  /* Outer margin; center matrix horizontally at intrinsic width (no column stretch). */
+  --content-clearance: 4mm;
+
+  padding: var(--content-clearance);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*
+ * 9 tracks: narrow gutter cols + tight max-content icon cols.
+ * Full-height gutter cells are empty in icon rows; crosses only appear in horizontal bands between rows.
+ */
+.matrix {
+  --cut-gutter: 1mm;
+  --band-tick-height: 3.5mm;
+
+  display: inline-grid;
+  grid-template-columns:
+    var(--cut-gutter) max-content var(--cut-gutter) max-content var(--cut-gutter) max-content var(--cut-gutter)
+    max-content var(--cut-gutter);
+  align-items: start;
+  justify-items: start;
+  column-gap: 0;
+  row-gap: 0;
+  grid-auto-rows: minmax(0, auto);
+}
+
+.iconSlot {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Narrow column beside icons — no dashed line along icon height */
+.gutterSpacer {
+  width: 100%;
+  min-height: 30mm;
+  box-sizing: border-box;
+  align-self: start;
+}
+
+/* Spacer under each icon column in a horizontal gutter band (no marks). */
+.hCutBlank {
+  min-height: 5mm;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Gutters between columns in horizontal bands — short dashed cross (+) only here. */
+.hCutGutter {
+  align-self: stretch;
+  position: relative;
+  width: 100%;
+  min-height: 5mm;
+  padding: 1mm 0;
+  box-sizing: border-box;
+}
+
+.hCutLine {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px dashed #6b7280;
+  box-sizing: border-box;
+}
+
+/* Short vertical tick in same band — no extension beside icons. */
+.vBandTick {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: var(--band-tick-height);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px dashed #6b7280;
+  box-sizing: border-box;
+}
+
+/* Force SVG dimensions for print accuracy (HatIconPerfect uses inline width:100%). */
+.iconSlot svg {
+  height: 30mm !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block !important;
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 8mm;
+  }
+
+  .page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .lead {
+    display: none;
+  }
+
+  .sheet {
+    --content-clearance: 3mm;
+  }
+
+  .hCutLine {
+    border-color: #000000;
+    border-top-width: 0.4pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .vBandTick {
+    border-color: #000000;
+    border-left-width: 0.4pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media (max-width: 640px) {
+  .sheet {
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

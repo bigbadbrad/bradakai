@@ -1,0 +1,1243 @@
+.wrap {
+  background: #f4efe6;
+  padding: 1.5rem 1rem 4rem;
+  overflow-x: clip;
+}
+
+@media (max-width: 899px) {
+  .wrap {
+    /* Flush first gallery row under fixed navbar — no extra band above full-bleed hero */
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .wrap {
+    padding: 2rem 2rem 5rem;
+  }
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.breadcrumbs {
+  font-size: 0.8125rem;
+  color: #78716c;
+  margin-bottom: 1.125rem;
+}
+
+.breadcrumbs a {
+  color: #78716c;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbsDesktop {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .breadcrumbsDesktop {
+    display: block;
+  }
+}
+
+.breadcrumbsMobile {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .breadcrumbsMobile {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .breadcrumbsMobile {
+    display: none !important;
+  }
+}
+
+.grid {
+  display: grid;
+  align-items: start;
+}
+
+/* Mobile: hero → title/price/color/CTA/policies → more gallery → Details */
+@media (max-width: 899px) {
+  /*
+   * Mobile full-bleed image strips (same spirit as homepage):
+   * keep text/content in gutter, but let image blocks span edge-to-edge.
+   */
+  /* Hero strip only — “more gallery” shares `.galleryGrid` and needs a later rule so `width: 100%` doesn’t override bleed. */
+  .galleryHeroMobile {
+    grid-area: galleryFirst;
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    max-width: none;
+  }
+
+  .galleryGridMobileMore {
+    grid-area: galleryMore;
+  }
+
+  /* Lifestyle: use the same per-row bleed approach as gallery images. */
+  .lifeHeroCol,
+  .lifeThumbRow {
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    max-width: none;
+  }
+
+  .galleryStack {
+    display: contents;
+  }
+
+  .galleryGridDesktop {
+    display: none !important;
+  }
+
+  .infoStack {
+    display: contents;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'galleryFirst'
+      'lead'
+      'galleryMore'
+      'rest';
+    gap: 1.5rem;
+  }
+
+  .infoLead {
+    grid-area: lead;
+    padding-top: 0.25rem;
+  }
+
+  .infoRest {
+    grid-area: rest;
+  }
+
+  /* Stacked PDP: only the desktop-hidden grid uses 2nd→1st swap; hero + “more” strip stay DOM order. */
+  .galleryGridDesktop .galleryCell[data-gallery-slot='0'] {
+    order: 2;
+  }
+
+  .galleryGridDesktop .galleryCell[data-gallery-slot='1'] {
+    order: 1;
+  }
+
+  .galleryGridDesktop .galleryCell[data-gallery-slot='2'] {
+    order: 3;
+  }
+
+  .galleryGridDesktop .galleryCell[data-gallery-slot='3'] {
+    order: 4;
+    display: none;
+  }
+
+  .galleryGridMobileMore .galleryCell[data-gallery-slot='3'] {
+    display: none;
+  }
+}
+
+/* Desktop: gallery | one stacked column (no phantom row gap from a tall gallery) */
+@media (min-width: 900px) {
+  .galleryHeroMobile {
+    display: none;
+  }
+
+  .galleryGridMobileMore {
+    display: none !important;
+  }
+
+  .galleryStack {
+    display: flex;
+    flex-direction: column;
+    grid-area: gallery;
+    gap: 0.4rem;
+    min-width: 0;
+    width: calc(100% + 10vw);
+    margin-left: clamp(-160px, -10vw, -64px);
+  }
+
+  .infoStack {
+    display: flex;
+    flex-direction: column;
+    grid-area: info;
+    min-width: 0;
+    gap: 0;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1.52fr) minmax(0, 0.78fr);
+    grid-template-rows: auto;
+    grid-template-areas: 'gallery info';
+    column-gap: 3.25rem;
+    row-gap: 0;
+  }
+
+  .infoLead,
+  .infoRest {
+    grid-area: unset;
+  }
+
+  .infoLead {
+    padding-top: 0.25rem;
+  }
+}
+
+.infoLead,
+.infoRest {
+  min-width: 0;
+}
+
+.galleryStack {
+  min-width: 0;
+}
+
+.galleryHeroMobile {
+  min-width: 0;
+}
+
+.galleryGrid {
+  display: grid;
+  /* Single column below 900px; two columns from min-width 900 (rule below wins on desktop). */
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+@media (max-width: 899px) {
+  /*
+   * Mobile “more images” strip uses both `.galleryGrid` and `.galleryGridMobileMore`. Base `width: 100%` must not
+   * override full-bleed — same specificity + later source order was leaving a gap on the right.
+   */
+  .galleryGrid.galleryGridMobileMore {
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    max-width: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.galleryCell {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #f9f5ee;
+  border: none;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Outer frame (inset shrinks this box); inner is position:relative so next/image fill sizes here, not .galleryCell. */
+.galleryImgMount {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.galleryImgInner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.galleryCell[data-pdp-gallery-inset] .galleryImgMount {
+  inset: clamp(14px, 12%, 56px);
+}
+
+.galleryCell:hover {
+  border: none;
+}
+
+.galleryCellActive {
+  border: none;
+}
+
+.galleryCell img {
+  object-fit: contain;
+}
+
+.title {
+  font-family: 'ivypresto-display', 'Times New Roman', Times, serif;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: #111827;
+  margin: 0 0 1rem;
+}
+
+.priceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.price {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.starsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reviewCount {
+  font-size: 0.875rem;
+  color: #78716c;
+}
+
+.optionLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #6b6560;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.optionLabel .pdpComplianceLink {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+/** Extra air above Add to bag after the one-size line (`.optionLabel` alone is tight). */
+.optionLabel.oneSizeLead {
+  margin-bottom: 1.5rem;
+}
+
+.swatches {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #d6cbbd;
+  padding: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Tie-dye: two-tone fill via inline gradient; keeps circle clip clean */
+.swatchSplit {
+  background-color: transparent;
+}
+
+.swatchActive {
+  border-color: #111827;
+  box-shadow: 0 0 0 1px #111827;
+}
+
+.sizeRow {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.sizeBtn {
+  min-width: 5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border: 1px solid #d6cbbd;
+  background: #fff;
+  color: #111827;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.sizeBtn:hover {
+  border-color: #a8a29e;
+}
+
+.sizeBtnActive {
+  background: #c7b299;
+  border-color: #c7b299;
+  color: #111827;
+}
+
+.sizeGuide {
+  font-size: 0.8125rem;
+  margin-bottom: 1.5rem;
+}
+
+.sizeGuide a {
+  color: #4b5563;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.sizeGuide a:hover {
+  color: #111827;
+}
+
+/* Sizes + Add to cart: one track width on desktop (CTA = same width as S/M · M/L row, not full title column). */
+.purchaseStack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .purchaseStack {
+    align-self: flex-start;
+    width: max-content;
+    max-width: 100%;
+    grid-template-columns: max-content;
+  }
+}
+
+.cta {
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #c7b299;
+  color: #111827;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1.75rem;
+  opacity: 1;
+  box-sizing: border-box;
+}
+
+.cta:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.cta:not(:disabled):hover {
+  filter: brightness(0.96);
+}
+
+/* Single-column PDP: full-width size row (purchaseStack already width: 100%) */
+@media (max-width: 899px) {
+  .sizeRow {
+    width: 100%;
+  }
+
+  .sizeBtn {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.policies {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.frayedHubTease {
+  margin: 1.25rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: #57534e;
+  max-width: 36rem;
+}
+
+.policy {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #57534e;
+  max-width: none;
+}
+
+.policyIcon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #78716c;
+}
+
+.pdpComplianceDetails {
+  margin-top: 2.5rem;
+  width: 100%;
+}
+
+.pdpComplianceSummary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+.pdpComplianceSummary::-webkit-details-marker {
+  display: none;
+}
+
+.pdpComplianceSummary::marker {
+  content: '';
+}
+
+.pdpComplianceSummary:focus {
+  outline: none;
+}
+
+.pdpComplianceSummary:focus-visible {
+  outline: 2px solid #c7b299;
+  outline-offset: 3px;
+}
+
+.pdpComplianceSummaryTrack {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.pdpComplianceSummaryTitle {
+  white-space: normal;
+  text-align: center;
+  text-wrap: balance;
+  max-width: min(22rem, 55vw);
+  letter-spacing: 0.02em;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.pdpComplianceBody {
+  padding-top: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.pdpComplianceGrid {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) 1fr;
+  gap: 0.45rem 1rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #4b5563;
+}
+
+.pdpComplianceGrid dt {
+  margin: 0;
+  font-weight: 600;
+  color: #57534e;
+}
+
+.pdpComplianceGrid dd {
+  margin: 0;
+}
+
+.pdpComplianceLink {
+  color: #5c4d3d;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  white-space: nowrap;
+}
+
+.pdpComplianceLink:hover {
+  color: #1a1816;
+}
+
+.pdpVariationNote {
+  margin: 1rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #78716c;
+}
+
+.detailsSection {
+  margin-top: 2rem;
+  padding-top: 0;
+  border-top: none;
+  width: 100%;
+}
+
+.detailsHeading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detailsHeadingLine {
+  flex: 1;
+  height: 1px;
+  background: #d6cbbd;
+}
+
+.detailsTitle {
+  font-family: 'ivypresto-display', 'Times New Roman', Times, serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: #1a1816;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+
+.detailsList {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #4b5563;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.detailsList li {
+  margin-bottom: 0.5rem;
+}
+
+.detailsList li::marker {
+  color: #c7b299;
+}
+
+.featureRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 0.75rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.featureIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #78716c;
+}
+
+.featureGlyph {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.featureLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #6b6560;
+}
+
+.lifestyle {
+  margin-top: 5.75rem;
+  padding-top: 5.75rem;
+  padding-bottom: 6rem;
+  border-top: none;
+}
+
+/*
+ * Mockup: portrait hero + copy + thumb row; flex end-align so images share a baseline.
+ */
+.lifestyleLayout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.75rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.lifeHeroCol {
+  flex: 0 0 clamp(300px, 40%, 520px);
+  display: flex;
+  flex-direction: column;
+}
+
+.lifeHero {
+  position: relative;
+  flex: none;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  min-height: 0;
+  background: #ebe4d8;
+  border: 1px solid #e0d6c8;
+  overflow: hidden;
+}
+
+.lifestyleHeroImg {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.lifeRight {
+  flex: 1 1 0;
+  min-width: min(100%, 18rem);
+  max-width: none;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.65rem;
+}
+
+.lifeText {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.lifestyleHeading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lifestyleHeadingLine {
+  flex: 1;
+  height: 1px;
+  background: #d6cbbd;
+}
+
+/* Thin, wide-tracked caps — mockup reads lighter than product title */
+.lifestyleTitle {
+  font-family: 'ivypresto-display', 'Times New Roman', Times, serif;
+  font-size: clamp(1.2rem, 2.25vw, 1.65rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: #1a1816;
+  margin: 0;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lifestyleSub {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  margin: 0;
+  text-align: center;
+  color: #3f3a36;
+  font-size: clamp(0.875rem, 1.4vw, 1rem);
+  line-height: 1.72;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.lifeThumbRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.lifeTileButton {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.lifeTile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #ebe4d8;
+  border: 1px solid #e4dcd0;
+  overflow: hidden;
+}
+
+/* Separate block below “The perfect bucket hat” — keep that section DOM untouched. */
+.extraLifestyleSection {
+  margin: 1.5rem auto 4rem;
+  width: min(100%, 720px);
+  box-sizing: border-box;
+}
+
+.extraLifestyleHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.extraLifestyleHeadingLine {
+  flex: 1 1 0;
+  min-width: 0.75rem;
+  height: 1px;
+  background: #d6cbbd;
+}
+
+.extraLifestyleTitle {
+  font-family: 'ivypresto-display', 'Times New Roman', Times, serif;
+  font-size: clamp(0.8rem, 1.35vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: #1a1816;
+  margin: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+}
+
+.extraLifestyleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.extraLifestyleGridOne {
+  grid-template-columns: 1fr;
+}
+
+.extraLifestyleTile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #ebe4d8;
+  border: 1px solid #e4dcd0;
+  overflow: hidden;
+}
+
+.extraLifestyleImgLayer {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.extraLifestyleImgLayerHover {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .extraLifestyleTileHasHover:hover .extraLifestyleImgLayerHover,
+  .extraLifestyleTileHasHover:focus-within .extraLifestyleImgLayerHover {
+    opacity: 1;
+  }
+}
+
+.lifestyleThumbImg {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* Stack with PDP (max-width 899); hero + thumbs span content width like main gallery. */
+@media (max-width: 899px) {
+  /*
+   * Details sits directly above this block on mobile; desktop rhythm (5.75rem × 2)
+   * reads as a huge empty band — use a lighter band than desktop but not flush.
+   */
+  .lifestyle {
+    margin-top: 3.2rem;
+    padding-top: 2.25rem;
+    padding-bottom: 4rem;
+  }
+
+  .lifestyleLayout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2.75rem;
+    max-width: none;
+  }
+
+  .lifeHeroCol {
+    flex: none;
+    max-width: none;
+    min-width: 0;
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    align-items: stretch;
+  }
+
+  .lifeHero {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    /* Match thumb tiles: same frame + full-bleed photo (no letterbox gutters). */
+    aspect-ratio: 3 / 4;
+    max-height: none;
+    min-height: 0;
+    border: 0;
+  }
+
+  .lifestyleHeroImg,
+  .lifestyleThumbImg {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .lifeThumbRow {
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    max-width: none;
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .extraLifestyleSection {
+    width: min(100%, 480px);
+    margin-bottom: 3rem;
+  }
+
+  .extraLifestyleHeading {
+    gap: 0.5rem;
+  }
+
+  .extraLifestyleTitle {
+    font-size: clamp(0.62rem, 2.85vw, 0.9rem);
+    letter-spacing: 0.08em;
+  }
+
+  .extraLifestyleSection .extraLifestyleGrid {
+    width: calc(100% + 2rem + 2px);
+    margin-inline: calc(-1rem - 1px);
+    max-width: none;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .lifeTile {
+    border: 0;
+  }
+
+  .extraLifestyleTile {
+    border: 0;
+  }
+
+  .lifeRight {
+    width: 100%;
+    max-width: none;
+    align-items: stretch;
+    gap: 1.2rem;
+  }
+
+  .lifeText {
+    max-width: 29rem;
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: 1rem;
+    padding-top: clamp(3rem, 10vw, 4.5rem);
+    padding-bottom: clamp(3rem, 10vw, 4.5rem);
+    box-sizing: border-box;
+  }
+
+  .lifestyleTitle {
+    font-size: clamp(0.9rem, 4.2vw, 1.05rem);
+    letter-spacing: 0.12em;
+    white-space: normal;
+    text-wrap: balance;
+  }
+}
+
+/* ——— Customer reviews (bottom PDP) ——— */
+
+.reviewsSection {
+  margin-top: 5.75rem;
+  padding-top: 5.75rem;
+  padding-bottom: 2rem;
+  border-top: none;
+}
+
+@media (max-width: 899px) {
+  .reviewsSection {
+    margin-top: 2.25rem;
+    padding-top: 2.25rem;
+  }
+}
+
+.reviewsHeading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.reviewsHeadingLine {
+  flex: 1;
+  height: 1px;
+  background: #d6cbbd;
+}
+
+.reviewsTitle {
+  font-family: 'ivypresto-display', 'Times New Roman', Times, serif;
+  font-size: clamp(0.95rem, 2.8vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: #1a1816;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+.reviewsSubhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin: 0 0 1.5rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.reviewsSubheadLeft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.reviewsWriteReview {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.65rem 1.25rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111827;
+  background: #fff;
+  border: 1px solid #d6cbbd;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.reviewsWriteReview:hover {
+  border-color: #a8a29e;
+}
+
+.reviewsSubheadCount {
+  font-size: 0.875rem;
+  color: #57534e;
+  text-transform: lowercase;
+}
+
+.reviewsEmpty {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 0.9375rem;
+  color: #57534e;
+}
+
+.reviewsEmptyRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.reviewStarsRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  vertical-align: middle;
+}
+
+.reviewStarSvg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.reviewList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reviewItem {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: 1.25rem 2.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e8e0d4;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.reviewItem:last-child {
+  border-bottom: none;
+}
+
+.reviewColMeta {
+  min-width: 0;
+}
+
+.reviewAuthor {
+  margin: 0 0 0.15rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.reviewVerified {
+  margin: 0 0 1rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+.reviewProductRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.reviewThumb {
+  flex-shrink: 0;
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid #e0d6c8;
+  background: #f9f5ee;
+}
+
+.reviewProductLabel {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #57534e;
+  padding-top: 0.15rem;
+}
+
+.reviewProductName {
+  display: inline;
+  font-weight: 600;
+  color: #111827;
+}
+
+.reviewColBody {
+  min-width: 0;
+}
+
+.reviewRatingRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.reviewDate {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a8a29e;
+}
+
+.reviewText {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.72;
+  color: #3f3a36;
+}
+
+.reviewsShowMore {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.75rem 1.75rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111827;
+  background: #fff;
+  border: 1px solid #d6cbbd;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.reviewsShowMore:hover {
+  border-color: #a8a29e;
+}
+
+@media (max-width: 699px) {
+  .reviewItem {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .reviewsSubhead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reviewsWriteReview {
+    margin-left: 0;
+  }
+
+  .reviewsEmptyRow {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 700px) {
+  .reviewColBody {
+    padding-top: 0.1rem;
+  }
+}

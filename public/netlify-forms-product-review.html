@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form: product-review</title>
+  </head>
+  <body>
+    <!--
+      Netlify discovers forms at deploy time from static HTML.
+      This file is not linked in the app; it only registers the form.
+      Submissions must POST to this URL (not /) — see NETLIFY_FORM_ACTION in product-write-review-modal.tsx.
+    -->
+    <form name="product-review" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="product-review" />
+      <p class="hidden" style="display: none">
+        <label>Do not fill this out: <input name="bot-field" /></label>
+      </p>
+      <input type="text" name="first-name" />
+      <input type="text" name="rating" />
+      <textarea name="body"></textarea>
+      <input type="text" name="product-title" />
+      <input type="text" name="product-handle" />
+      <input type="text" name="product-id" />
+    </form>
+  </body>
+</html>
