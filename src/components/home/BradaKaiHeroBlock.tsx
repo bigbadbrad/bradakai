@@ -79,9 +79,10 @@ export const BradaKaiHeroBlock: FC = () => (
         inset: 0,
         zIndex: 2,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: { xs: 'flex-start', md: 'center' },
         px: { xs: 2.5, sm: 4, md: 6, lg: 8 },
-        py: { xs: 4, md: 6 },
+        pt: { xs: 3.5, md: 6 },
+        pb: { xs: 1.5, md: 6 },
       }}
     >
       <Box sx={{ maxWidth: { xs: 320, sm: 420, md: 520 } }}>
@@ -90,10 +91,10 @@ export const BradaKaiHeroBlock: FC = () => (
           sx={{
             ...bradakaiDisplaySx,
             fontFamily: '"old-press", "Old Press", "Bebas Neue", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-            fontSize: { xs: '1.45rem', sm: '2.5rem', md: '3.5rem' },
+            fontSize: { xs: '1.35rem', sm: '2.5rem', md: '3.5rem' },
             lineHeight: 1.05,
             color: { xs: BRADAKAI_CREAM, md: BRADAKAI_NAVY },
-            mb: { xs: 1, md: 2 },
+            mb: { xs: 0.75, md: 2 },
             textShadow: {
               xs: '0 2px 24px rgba(0,0,0,0.35)',
               md: 'none',
@@ -113,10 +114,10 @@ export const BradaKaiHeroBlock: FC = () => (
           component="p"
           sx={{
             ...bradakaiDisplaySx,
-            fontSize: { xs: '0.75rem', sm: '1rem', md: '1.15rem' },
+            fontSize: { xs: '0.7rem', sm: '1rem', md: '1.15rem' },
             letterSpacing: { xs: '0.1em', md: '0.14em' },
             color: { xs: 'rgba(245,240,232,0.92)', md: BRADAKAI_NAVY },
-            mb: { xs: 2, md: 4 },
+            mb: { xs: 1.5, md: 4 },
             textShadow: { xs: '0 1px 12px rgba(0,0,0,0.3)', md: 'none' },
           }}
         >
@@ -136,8 +137,8 @@ export const BradaKaiHeroBlock: FC = () => (
             letterSpacing: { xs: '0.1em', md: '0.14em' },
             bgcolor: BRADAKAI_ORANGE,
             color: '#fff',
-            px: { xs: 2.25, md: 3.5 },
-            py: { xs: 0.9, md: 1.35 },
+            px: { xs: 2.1, md: 3.5 },
+            py: { xs: 0.8, md: 1.35 },
             borderRadius: 0,
             '&:hover': { bgcolor: '#a85324' },
           }}

@@ -10,14 +10,14 @@ type BradaKaiLogoProps = {
 };
 
 export const BradaKaiLogo: FC<BradaKaiLogoProps> = ({
-  width = { xs: 240, sm: 280, md: 380 },
+  width = { xs: 260, sm: 290, md: 380 },
   priority = false,
 }) => (
   <Box
     sx={{
       position: 'relative',
       width,
-      height: { xs: 64, sm: 72, md: 92 },
+      height: { xs: 70, sm: 76, md: 92 },
       lineHeight: 0,
     }}
   >
@@ -26,7 +26,7 @@ export const BradaKaiLogo: FC<BradaKaiLogoProps> = ({
       alt="BradaKai"
       fill
       priority={priority}
-      sizes="(max-width: 600px) 240px, 380px"
+      sizes="(max-width: 600px) 260px, 380px"
       style={{ objectFit: 'contain', objectPosition: 'center' }}
     />
   </Box>
