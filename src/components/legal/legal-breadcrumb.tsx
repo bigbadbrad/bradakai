@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Box } from '@mui/material';
 
-/** Breadcrumb: Nury (home) → current legal page label. */
+/** Breadcrumb: BradaKai (home) → current legal page label. */
 export function LegalBreadcrumb({ currentLabel }: { currentLabel: string }) {
   return (
     <Box
@@ -23,7 +23,7 @@ export function LegalBreadcrumb({ currentLabel }: { currentLabel: string }) {
           '&:hover': { textDecoration: 'underline' },
         }}
       >
-        Nury
+        BradaKai
       </Box>
       <Box component="span" aria-hidden sx={{ mx: 0.5 }}>
         &gt;

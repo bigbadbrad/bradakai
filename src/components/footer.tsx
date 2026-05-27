@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { BRADAKAI_CREAM, BRADAKAI_NAVY, bradakaiDisplaySx } from '@/lib/bradakai/brand';
-import { isCommerceHref, PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
 
 export const Footer: FC = () => {
   const customerServiceLinks = [
@@ -17,14 +16,7 @@ export const Footer: FC = () => {
     { label: 'Contact', href: '/contact' },
   ] as const;
 
-  const shopLinks = [
-    { label: 'Shop', href: '/shop' },
-    { label: 'Collections', href: '/collections' },
-    { label: 'Lookbook', href: '/lookbook' },
-  ].filter((item) => PRODUCT_LINKS_ENABLED || !isCommerceHref(item.href));
-
   const aboutLinks = [
-    { label: 'About', href: '/about' },
     { label: 'Terms of Service', href: '/terms' },
     { label: 'Privacy Policy', href: '/privacy' },
   ] as const;
@@ -53,7 +45,8 @@ export const Footer: FC = () => {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: 'repeat(4, minmax(0, 1fr))' },
+            gridTemplateColumns: { xs: '1fr', md: 'repeat(3, minmax(160px, 220px))' },
+            justifyContent: { md: 'center' },
             columnGap: { xs: 4, md: 8 },
             rowGap: { xs: 4, md: 2 },
             mb: { xs: 6, md: 7 },
@@ -65,19 +58,6 @@ export const Footer: FC = () => {
             </Typography>
             <Box sx={{ display: 'grid', gap: 1.1 }}>
               {customerServiceLinks.map((item) => (
-                <Box key={item.label} component={Link} href={item.href} sx={linkSx}>
-                  {item.label}
-                </Box>
-              ))}
-            </Box>
-          </Box>
-
-          <Box>
-            <Typography sx={{ ...bradakaiDisplaySx, fontSize: '0.85rem', color: BRADAKAI_CREAM, mb: 2.25 }}>
-              Shop
-            </Typography>
-            <Box sx={{ display: 'grid', gap: 1.1 }}>
-              {shopLinks.map((item) => (
                 <Box key={item.label} component={Link} href={item.href} sx={linkSx}>
                   {item.label}
                 </Box>

@@ -1,4 +1,4 @@
-// /components/main-navbar.tsx — BradaKai (mobile: logo + hamburger like nury)
+// /components/main-navbar.tsx — BradaKai (navbar grid matches nury)
 'use client';
 
 import React from 'react';
@@ -8,32 +8,20 @@ import {
   AppBar,
   Badge,
   Box,
-  Button,
-  Menu,
-  MenuItem,
-  Toolbar,
   IconButton,
+  Toolbar,
   Tooltip,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { BradaKaiLogo } from '@/components/bradakai-logo';
 import { UserPopover } from './auth/user-popover';
 import { useBag } from '@/contexts/bag-context';
 import { usePathname, useRouter } from 'next/navigation';
-import {
-  BRADAKAI_CREAM,
-  BRADAKAI_NAVY,
-  BRADAKAI_ORANGE,
-  bradakaiNavLinkSx,
-} from '@/lib/bradakai/brand';
-import { isCommerceHref, PRODUCT_LINKS_ENABLED } from '@/lib/bradakai/catalog';
+import { BRADAKAI_CREAM, BRADAKAI_NAVY, BRADAKAI_ORANGE } from '@/lib/bradakai/brand';
 
 const DESKTOP_GLYPH_PX = 20;
 const MOBILE_MENU_GLYPH_PX = 22;
-
-/** CSS breakpoints — avoids useMediaQuery SSR defaulting to desktop on mobile. */
-const showDesktopOnly = { display: { xs: 'none', md: 'flex' } } as const;
-const showMobileOnly = { display: { xs: 'block', md: 'none' } } as const;
 
 function NavGlyph({
   src,
@@ -58,19 +46,6 @@ function NavGlyph({
   );
 }
 
-const NAV_LINKS = [
-  { label: 'Collections', href: '/collections' },
-  { label: 'About', href: '/about' },
-  { label: 'Lookbook', href: '/lookbook' },
-] as const;
-
-const ACTIVE_NAV_LINKS = NAV_LINKS.filter((item) => PRODUCT_LINKS_ENABLED || !isCommerceHref(item.href));
-
-const SHOP_LINKS = [
-  { label: 'T-Shirts', href: '/shop' },
-  { label: 'All styles', href: '/frayed-bucket-hats' },
-] as const;
-
 const mobileMenuItemSx = {
   all: 'unset',
   width: '100%',
@@ -84,18 +59,18 @@ const mobileMenuItemSx = {
 } as const;
 
 export const MainNavbar: FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { totalQuantity, toggleBag } = useBag();
   const pathname = usePathname();
   const router = useRouter();
   const [accountAnchorEl, setAccountAnchorEl] = React.useState<HTMLElement | null>(null);
-  const [shopAnchorEl, setShopAnchorEl] = React.useState<HTMLElement | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const hamburgerRef = React.useRef<HTMLButtonElement>(null);
   const mobileMenuPanelRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setAccountAnchorEl(null);
-    setShopAnchorEl(null);
     setMobileMenuOpen(false);
   }, [pathname]);
 
@@ -147,6 +122,38 @@ export const MainNavbar: FC = () => {
     queueMicrotask(() => setAccountAnchorEl(hamburgerRef.current));
   };
 
+  const desktopIcons = (
+    <>
+      <Tooltip title="Account">
+        <IconButton
+          aria-label="Account"
+          size="small"
+          sx={iconButtonSx}
+          onClick={(e) => setAccountAnchorEl(e.currentTarget)}
+        >
+          <NavGlyph src="/icons/account.svg" size={DESKTOP_GLYPH_PX} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Search">
+        <IconButton component={Link} href="/search" aria-label="Search" size="small" sx={iconButtonSx}>
+          <NavGlyph src="/icons/search2.svg" size={DESKTOP_GLYPH_PX} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Bag">
+        <IconButton
+          aria-label={totalQuantity > 0 ? `Open bag, ${totalQuantity} items` : 'Open bag'}
+          size="small"
+          sx={iconButtonSx}
+          onClick={() => toggleBag()}
+        >
+          <Badge badgeContent={totalQuantity} invisible={totalQuantity === 0} overlap="circular" sx={bagBadgeSx}>
+            <NavGlyph src="/icons/bag3.svg" size={DESKTOP_GLYPH_PX} />
+          </Badge>
+        </IconButton>
+      </Tooltip>
+    </>
+  );
+
   return (
     <>
       <AppBar
@@ -166,72 +173,13 @@ export const MainNavbar: FC = () => {
             py: { xs: 0.75, md: 1.5 },
             px: { xs: 2, md: 3, lg: 4 },
             display: 'grid',
+            /** Mobile: `1fr auto 1fr` keeps the logo at true viewport center while the menu stays right (nury). */
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
             gap: 1,
           }}
         >
-          {/* Desktop nav — hidden on mobile via CSS, not JS */}
-          <Box
-            sx={{
-              ...showDesktopOnly,
-              minWidth: 0,
-              gridColumn: '1 / 2',
-              alignItems: 'center',
-              gap: { md: 2.5, lg: 3.5 },
-            }}
-          >
-            {PRODUCT_LINKS_ENABLED ? (
-              <>
-                <Button
-                  onClick={(e) => setShopAnchorEl(e.currentTarget)}
-                  endIcon={<KeyboardArrowDownIcon sx={{ fontSize: '1.1rem !important', color: BRADAKAI_NAVY }} />}
-                  sx={{
-                    ...bradakaiNavLinkSx,
-                    minWidth: 0,
-                    p: 0,
-                    '&:hover': { bgcolor: 'transparent' },
-                  }}
-                >
-                  Shop
-                </Button>
-                <Menu
-                  anchorEl={shopAnchorEl}
-                  open={Boolean(shopAnchorEl)}
-                  onClose={() => setShopAnchorEl(null)}
-                  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                  transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                  slotProps={{
-                    paper: {
-                      sx: {
-                        mt: 1,
-                        bgcolor: BRADAKAI_CREAM,
-                        border: `1px solid rgba(30, 58, 95, 0.12)`,
-                        boxShadow: '0 8px 24px rgba(30, 58, 95, 0.12)',
-                      },
-                    },
-                  }}
-                >
-                  {SHOP_LINKS.map((item) => (
-                    <MenuItem
-                      key={item.href}
-                      component={Link}
-                      href={item.href}
-                      onClick={() => setShopAnchorEl(null)}
-                      sx={{ ...bradakaiNavLinkSx, fontSize: '0.85rem', py: 1.25 }}
-                    >
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </>
-            ) : null}
-      {ACTIVE_NAV_LINKS.map((item) => (
-        <Box key={item.href} component={Link} href={item.href} sx={bradakaiNavLinkSx}>
-          {item.label}
-        </Box>
-      ))}
-          </Box>
+          <Box sx={{ minWidth: 0, gridColumn: '1 / 2' }} />
 
           <Box
             sx={{
@@ -246,10 +194,9 @@ export const MainNavbar: FC = () => {
             </Link>
           </Box>
 
-          {/* Desktop icons */}
           <Box
             sx={{
-              ...showDesktopOnly,
+              display: 'flex',
               justifyContent: 'flex-end',
               alignItems: 'center',
               gap: 0.5,
@@ -257,123 +204,91 @@ export const MainNavbar: FC = () => {
               gridColumn: '3 / 4',
             }}
           >
-            <Tooltip title="Account">
-              <IconButton
-                aria-label="Account"
-                size="small"
-                sx={iconButtonSx}
-                onClick={(e) => setAccountAnchorEl(e.currentTarget)}
-              >
-                <NavGlyph src="/icons/account.svg" size={DESKTOP_GLYPH_PX} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Search">
-              <IconButton component={Link} href="/search" aria-label="Search" size="small" sx={iconButtonSx}>
-                <NavGlyph src="/icons/search2.svg" size={DESKTOP_GLYPH_PX} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Bag">
-              <IconButton
-                aria-label={totalQuantity > 0 ? `Open bag, ${totalQuantity} items` : 'Open bag'}
-                size="small"
-                sx={iconButtonSx}
-                onClick={() => toggleBag()}
-              >
-                <Badge badgeContent={totalQuantity} invisible={totalQuantity === 0} overlap="circular" sx={bagBadgeSx}>
-                  <NavGlyph src="/icons/bag3.svg" size={DESKTOP_GLYPH_PX} />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-          </Box>
-
-          {/* Mobile hamburger — Search / Account / Bag only (nury pattern) */}
-          <Box
-            sx={{
-              ...showMobileOnly,
-              position: 'relative',
-              justifySelf: 'end',
-              gridColumn: '3 / 4',
-            }}
-          >
-            <IconButton
-              ref={hamburgerRef}
-              aria-label="Open menu"
-              aria-controls={mobileMenuOpen ? 'main-nav-mobile-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={mobileMenuOpen}
-              size="medium"
-              sx={{ ...iconButtonSx, p: 0.5 }}
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-            >
-              <Box
-                aria-hidden
-                sx={{
-                  width: 40,
-                  height: 40,
-                  backgroundColor: BRADAKAI_NAVY,
-                  WebkitMask: 'url(/icons/list.svg) center / contain no-repeat',
-                  mask: 'url(/icons/list.svg) center / contain no-repeat',
-                }}
-              />
-            </IconButton>
-
-            {mobileMenuOpen ? (
-              <Box
-                id="main-nav-mobile-menu"
-                ref={mobileMenuPanelRef}
-                role="menu"
-                sx={{
-                  position: 'absolute',
-                  top: 'calc(100% + 8px)',
-                  right: 0,
-                  zIndex: 1400,
-                  minWidth: 200,
-                  py: 0.5,
-                  borderRadius: 1,
-                  boxShadow: '0 10px 30px rgba(30,58,95,0.18)',
-                  bgcolor: BRADAKAI_CREAM,
-                  color: BRADAKAI_NAVY,
-                  border: '1px solid rgba(30, 58, 95, 0.12)',
-                }}
-              >
-                <Box
-                  component="button"
-                  role="menuitem"
-                  onClick={() => {
-                    closeMobileMenu();
-                    router.push('/search');
-                  }}
-                  sx={mobileMenuItemSx}
+            {isMobile ? (
+              <Box sx={{ position: 'relative' }}>
+                <IconButton
+                  ref={hamburgerRef}
+                  aria-label="Open menu"
+                  aria-controls={mobileMenuOpen ? 'main-nav-mobile-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={mobileMenuOpen}
+                  size="medium"
+                  sx={{ ...iconButtonSx, p: 0.5 }}
+                  onClick={() => setMobileMenuOpen((prev) => !prev)}
                 >
-                  <NavGlyph src="/icons/search2.svg" />
-                  <Box component="span" sx={{ fontSize: '0.95rem' }}>
-                    Search
+                  <Box
+                    aria-hidden
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      backgroundColor: BRADAKAI_NAVY,
+                      WebkitMask: 'url(/icons/list.svg) center / contain no-repeat',
+                      mask: 'url(/icons/list.svg) center / contain no-repeat',
+                    }}
+                  />
+                </IconButton>
+
+                {mobileMenuOpen ? (
+                  <Box
+                    id="main-nav-mobile-menu"
+                    ref={mobileMenuPanelRef}
+                    role="menu"
+                    sx={{
+                      position: 'absolute',
+                      top: 'calc(100% + 8px)',
+                      right: 0,
+                      zIndex: 1400,
+                      minWidth: 200,
+                      py: 0.5,
+                      borderRadius: 1,
+                      boxShadow: '0 10px 30px rgba(30,58,95,0.18)',
+                      bgcolor: BRADAKAI_CREAM,
+                      color: BRADAKAI_NAVY,
+                      border: '1px solid rgba(30, 58, 95, 0.12)',
+                    }}
+                  >
+                    <Box
+                      component="button"
+                      role="menuitem"
+                      onClick={() => {
+                        closeMobileMenu();
+                        router.push('/search');
+                      }}
+                      sx={mobileMenuItemSx}
+                    >
+                      <NavGlyph src="/icons/search2.svg" />
+                      <Box component="span" sx={{ fontSize: '0.95rem' }}>
+                        Search
+                      </Box>
+                    </Box>
+                    <Box component="button" role="menuitem" onClick={openAccountFromMenu} sx={mobileMenuItemSx}>
+                      <NavGlyph src="/icons/account.svg" />
+                      <Box component="span" sx={{ fontSize: '0.95rem' }}>
+                        Account
+                      </Box>
+                    </Box>
+                    <Box
+                      component="button"
+                      role="menuitem"
+                      onClick={() => {
+                        closeMobileMenu();
+                        toggleBag();
+                      }}
+                      sx={mobileMenuItemSx}
+                    >
+                      <Badge badgeContent={totalQuantity} invisible={totalQuantity === 0} overlap="circular" sx={bagBadgeSx}>
+                        <NavGlyph src="/icons/bag3.svg" />
+                      </Badge>
+                      <Box component="span" sx={{ fontSize: '0.95rem' }}>
+                        Bag
+                      </Box>
+                    </Box>
                   </Box>
-                </Box>
-                <Box component="button" role="menuitem" onClick={openAccountFromMenu} sx={mobileMenuItemSx}>
-                  <NavGlyph src="/icons/account.svg" />
-                  <Box component="span" sx={{ fontSize: '0.95rem' }}>
-                    Account
-                  </Box>
-                </Box>
-                <Box
-                  component="button"
-                  role="menuitem"
-                  onClick={() => {
-                    closeMobileMenu();
-                    toggleBag();
-                  }}
-                  sx={mobileMenuItemSx}
-                >
-                  <Badge badgeContent={totalQuantity} invisible={totalQuantity === 0} overlap="circular" sx={bagBadgeSx}>
-                    <NavGlyph src="/icons/bag3.svg" />
-                  </Badge>
-                  <Box component="span" sx={{ fontSize: '0.95rem' }}>
-                    Bag
-                  </Box>
-                </Box>
+                ) : null}
               </Box>
-            ) : null}
+            ) : (
+              desktopIcons
+            )}
           </Box>
         </Toolbar>
       </AppBar>

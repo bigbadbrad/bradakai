@@ -1,5 +1,6 @@
 import { BradaKaiFeaturedBlock } from '@/components/home/BradaKaiFeaturedBlock';
 import { BradaKaiHeroBlock } from '@/components/home/BradaKaiHeroBlock';
+import { BradaKaiStoryBlock } from '@/components/home/BradaKaiStoryBlock';
 import { SITE_URL } from '@/lib/legal/site';
 import type { Metadata } from 'next';
 
@@ -28,6 +29,7 @@ export default function Page() {
   return (
     <>
       <BradaKaiHeroBlock />
+      <BradaKaiStoryBlock />
       <BradaKaiFeaturedBlock />
     </>
   );
