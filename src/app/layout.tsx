@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/core/theme-provider/theme-provider';
 import { LayoutWrapper } from '@/components/layout-wrapper';
 import { GoogleAnalytics } from '@/utils/GoogleAnalytics';
 import { SITE_URL } from '@/lib/legal/site';
+import { BRADAKAI_META_DESCRIPTION, BRADAKAI_META_TITLE } from '@/lib/bradakai/brand';
 import { oldPress } from '@/lib/fonts/old-press';
 
 export const viewport = {
@@ -26,15 +27,13 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   title: {
-    default: 'BradaKai — surf wear made by the sea',
+    default: BRADAKAI_META_TITLE,
     template: '%s | BradaKai',
   },
-  description:
-    'BradaKai is a surf wear brand with old school spirit and timeless coastal style — tees and essentials for riders who keep it classic.',
+  description: BRADAKAI_META_DESCRIPTION,
   openGraph: {
-    title: 'BradaKai — surf wear made by the sea',
-    description:
-      'Made by the sea. Worn by the few. Old school spirit. Timeless style.',
+    title: BRADAKAI_META_TITLE,
+    description: BRADAKAI_META_DESCRIPTION,
     type: 'website',
     locale: 'en_US',
     url: SITE_URL,
@@ -48,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BradaKai — surf wear made by the sea',
-    description: 'Made by the sea. Worn by the few.',
+    title: BRADAKAI_META_TITLE,
+    description: BRADAKAI_META_DESCRIPTION,
     images: ['/hero-16-9.png'],
   },
   icons: {
