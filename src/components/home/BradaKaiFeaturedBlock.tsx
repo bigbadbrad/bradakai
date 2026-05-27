@@ -34,7 +34,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
     sx={{
       bgcolor: BRADAKAI_CREAM,
       pt: { xs: 5, md: 8 },
-      pb: { xs: 8, md: 12 },
+      pb: { xs: 18, md: 24 },
     }}
   >
     <Container maxWidth="lg">
