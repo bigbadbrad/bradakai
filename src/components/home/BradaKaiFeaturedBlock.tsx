@@ -84,7 +84,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
               mb: 3,
             }}
           >
-            Heavyweight tees for the crew. Classic fits for dawn patrol, beach fires, and the long days that end with salt on your skin.
+            Classic fits for dawn patrol, beach fires, and the long days that end with salt on your skin.
           </Typography>
 
           <Typography
