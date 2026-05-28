@@ -52,13 +52,9 @@ export const metadata: Metadata = {
     images: ['/hero-16-9.png'],
   },
   icons: {
-    icon: [
-      { url: '/favicon.png', type: 'image/png', sizes: '48x48' },
-      { url: '/favicon.png', type: 'image/png', sizes: '192x192' },
-      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
-    ],
-    apple: [{ url: '/favicon.png', sizes: '180x180', type: 'image/png' }],
-    shortcut: ['/favicon.png'],
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+    shortcut: ['/favicon.ico'],
   },
   manifest: '/site.webmanifest',
   appleWebApp: {
@@ -76,6 +72,9 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/usd3daq.css" />
+        {/* iOS tab switcher requests /apple-touch-icon.png by convention */}
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={oldPress.variable}>
         <GoogleAnalytics />
