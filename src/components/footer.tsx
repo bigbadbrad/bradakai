@@ -4,8 +4,8 @@
 import type { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import Link from 'next/link';
-import Image from 'next/image';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { BradaKaiIcon } from '@/components/bradakai-icon';
 import { BRADAKAI_CREAM, BRADAKAI_NAVY, bradakaiDisplaySx } from '@/lib/bradakai/brand';
 
 export const Footer: FC = () => {
@@ -96,8 +96,8 @@ export const Footer: FC = () => {
           }}
         >
           <Link href="/" aria-label="BradaKai home" style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Box sx={{ width: { xs: 120, md: 140 }, mb: 1.5, mx: 'auto', filter: 'brightness(0) invert(1)' }}>
-              <Image src="/logo.png" alt="" width={280} height={84} style={{ width: '100%', height: 'auto' }} />
+            <Box sx={{ mb: 1.5, mx: 'auto' }}>
+              <BradaKaiIcon width={{ xs: 72, md: 88 }} />
             </Box>
           </Link>
           <Typography

@@ -190,7 +190,7 @@ export const MainNavbar: FC = () => {
             }}
           >
             <Link href="/" aria-label="BradaKai home">
-              <BradaKaiLogo width={{ xs: 220, sm: 260, md: 360 }} priority />
+              <BradaKaiLogo width={{ xs: 90, sm: 110, md: 150 }} />
             </Link>
           </Box>
 
