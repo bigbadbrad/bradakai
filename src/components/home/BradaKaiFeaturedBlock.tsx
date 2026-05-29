@@ -22,9 +22,9 @@ const FEATURED_TEES = [
     label: 'Product 2',
   },
   {
-    src: '/product3.png',
-    alt: 'BradaKai product 3 tee',
-    label: 'Product 3',
+    src: '/hat.png',
+    alt: 'BradaKai hats',
+    label: 'Hats',
   },
 ] as const;
 
