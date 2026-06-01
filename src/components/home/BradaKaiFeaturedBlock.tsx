@@ -22,9 +22,14 @@ const FEATURED_TEES = [
     label: 'Product 2',
   },
   {
-    src: '/hat.png',
-    alt: 'BradaKai hats',
-    label: 'Hats',
+    src: '/hat-bitchin.png',
+    alt: 'BradaKai hat',
+    label: 'Hat bitchin',
+  },
+  {
+    src: '/hat-white.png',
+    alt: 'BradaKai white hat',
+    label: 'Hat white',
   },
 ] as const;
 
@@ -104,7 +109,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
             gap: { xs: 1.5, md: 2 },
           }}
         >
@@ -119,7 +124,7 @@ export const BradaKaiFeaturedBlock: FC = () => (
               }}
             >
               <Box sx={{ position: 'relative', aspectRatio: '1 / 1' }}>
-                <Image src={tee.src} alt={tee.alt} fill sizes="(max-width: 900px) 33vw, 200px" style={{ objectFit: 'cover' }} />
+                <Image src={tee.src} alt={tee.alt} fill sizes="(max-width: 900px) 50vw, 220px" style={{ objectFit: 'cover' }} />
               </Box>
             </Box>
           ))}
