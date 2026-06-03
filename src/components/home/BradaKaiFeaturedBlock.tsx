@@ -31,6 +31,16 @@ const FEATURED_TEES = [
     alt: 'BradaKai white hat',
     label: 'Hat white',
   },
+  {
+    src: '/brown-hat-side.png',
+    alt: 'BradaKai brown hat side',
+    label: 'Brown hat side',
+  },
+  {
+    src: '/brown-hat-front.png',
+    alt: 'BradaKai brown hat front',
+    label: 'Brown hat front',
+  },
 ] as const;
 
 export const BradaKaiFeaturedBlock: FC = () => (
