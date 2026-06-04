@@ -56,6 +56,16 @@ const FEATURED_TEES = [
     alt: 'BradaKai breathable hat gray orange',
     label: 'Breathable hat gray orange',
   },
+  {
+    src: '/breathable-hat-gray-green.png',
+    alt: 'BradaKai breathable hat gray green',
+    label: 'Breathable hat gray green',
+  },
+  // {
+  //   src: '/breadable-hat-red-white-blue.png',
+  //   alt: 'BradaKai breathable hat red white blue',
+  //   label: 'Breathable hat red white blue',
+  // },
 ] as const;
 
 export const BradaKaiFeaturedBlock: FC = () => (
