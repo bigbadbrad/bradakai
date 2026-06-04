@@ -3,6 +3,7 @@
 import type { FC } from 'react';
 import Image from 'next/image';
 import { Box, Container, Typography } from '@mui/material';
+import { BradaKaiWeatheredMark } from '@/components/bradakai-weathered-mark';
 import {
   BRADAKAI_CREAM,
   BRADAKAI_NAVY,
@@ -87,6 +88,8 @@ export const BradaKaiFeaturedBlock: FC = () => (
         }}
       >
         <Box>
+          <BradaKaiWeatheredMark sx={{ mb: { xs: 1.5, md: 2 } }} />
+
           <Typography
             component="p"
             sx={{
@@ -103,9 +106,11 @@ export const BradaKaiFeaturedBlock: FC = () => (
           <Typography
             component="h2"
             sx={{
-              ...bradakaiDisplaySx,
-              fontSize: { xs: '1.85rem', md: '2.25rem' },
+              fontFamily: 'var(--font-old-press), "Bebas Neue", system-ui, sans-serif',
+              fontWeight: 400,
+              fontSize: { xs: '2rem', md: '2.5rem' },
               lineHeight: 1.1,
+              letterSpacing: '0.04em',
               color: BRADAKAI_NAVY,
               mb: 2,
             }}

@@ -29,8 +29,8 @@ export type HomepageEditorialSectionProps = {
     width: number;
     height: number;
     alt: string;
-    href: string;
-    linkAriaLabel: string;
+    href?: string;
+    linkAriaLabel?: string;
     priority?: boolean;
     sizes?: string;
   };
@@ -55,6 +55,18 @@ export function HomepageEditorialSection({
   const copyOrderMd = desktopImageSide === 'left' ? 2 : 1;
   const justifyMd = desktopImageSide === 'right' ? 'flex-end' : 'flex-start';
 
+  const imageEl = (
+    <Image
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      alt={image.alt}
+      priority={image.priority}
+      sizes={image.sizes ?? '(max-width: 900px) 100vw, 48vw'}
+      style={{ display: 'block', width: '100%', height: 'auto', maxWidth: '100%' }}
+    />
+  );
+
   return (
     <Box
       component="section"
@@ -78,21 +90,17 @@ export function HomepageEditorialSection({
           <Box sx={{ order: { xs: 1, md: imageOrderMd }, ...fullBleedImageWrapSx }}>
             <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: justifyMd }, width: '100%' }}>
               <EditorialFrame enabled={editorialFrame}>
-                <Link
-                  href={image.href}
-                  aria-label={image.linkAriaLabel}
-                  style={{ display: 'block', lineHeight: 0, maxWidth: '100%' }}
-                >
-                  <Image
-                    src={image.src}
-                    width={image.width}
-                    height={image.height}
-                    alt={image.alt}
-                    priority={image.priority}
-                    sizes={image.sizes ?? '(max-width: 900px) 100vw, 48vw'}
-                    style={{ display: 'block', width: '100%', height: 'auto', maxWidth: '100%' }}
-                  />
-                </Link>
+                {image.href ? (
+                  <Link
+                    href={image.href}
+                    aria-label={image.linkAriaLabel}
+                    style={{ display: 'block', lineHeight: 0, maxWidth: '100%' }}
+                  >
+                    {imageEl}
+                  </Link>
+                ) : (
+                  <Box sx={{ display: 'block', lineHeight: 0, maxWidth: '100%' }}>{imageEl}</Box>
+                )}
               </EditorialFrame>
             </Box>
           </Box>

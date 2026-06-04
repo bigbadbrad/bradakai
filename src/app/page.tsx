@@ -1,4 +1,6 @@
 import { BradaKaiFeaturedBlock } from '@/components/home/BradaKaiFeaturedBlock';
+import { BradaKaiHatModelBlock } from '@/components/home/BradaKaiHatModelBlock';
+import { BradaKaiLimeGreenHatModelBlock } from '@/components/home/BradaKaiLimeGreenHatModelBlock';
 import { BradaKaiHeroBlock } from '@/components/home/BradaKaiHeroBlock';
 import { BradaKaiStoryBlock } from '@/components/home/BradaKaiStoryBlock';
 import { SITE_URL } from '@/lib/legal/site';
@@ -31,6 +33,8 @@ export default function Page() {
       <BradaKaiHeroBlock />
       <BradaKaiStoryBlock />
       <BradaKaiFeaturedBlock />
+      <BradaKaiHatModelBlock />
+      <BradaKaiLimeGreenHatModelBlock />
     </>
   );
 }
