@@ -39,3 +39,18 @@ body {
   background-color: #1e3a5f !important;
   overscroll-behavior-y: none;
 }
+
+/* BradaKai navbar — linen texture (disabled; use class brada-header-texture). No position rule. */
+.brada-header-texture.MuiAppBar-root {
+  background-color: #f3ebdd;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(70, 45, 25, 0.025) 0px,
+      rgba(70, 45, 25, 0.025) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.018), rgba(255, 255, 255, 0.12));
+  background-size: 100% 18px, 100% 100%;
+}

@@ -159,8 +159,8 @@ export const MainNavbar: FC = () => {
       <AppBar
         position="fixed"
         elevation={0}
+        className="brada-header-texture"
         sx={{
-          backgroundColor: BRADAKAI_CREAM,
           color: BRADAKAI_NAVY,
           borderBottom: '1px solid rgba(30, 58, 95, 0.1)',
         }}

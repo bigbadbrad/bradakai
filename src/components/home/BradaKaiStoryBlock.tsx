@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 import { Box, Container, Typography } from '@mui/material';
+import { BradaKaiMark } from '@/components/bradakai-mark';
 import {
   BRADAKAI_CREAM,
   BRADAKAI_NAVY,
@@ -17,17 +18,73 @@ const bodySx = {
   letterSpacing: '0.01em',
 } as const;
 
+/** Cream speckle tiles — screen-blended over the mark so ink looks worn, not pixelated. */
+const storyMarkFineGrain = encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96">
+    <filter id="f" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.96 0 0 0 0 0.93 0 0 0 0 0.88 0 0 0 0.28 0"/>
+    </filter>
+    <rect width="96" height="96" filter="url(#f)"/>
+  </svg>`
+);
+
+const storyMarkCoarseGrain = encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+    <filter id="c" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.14" numOctaves="2" seed="4" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.97 0 0 0 0 0.94 0 0 0 0 0.9 0 0 0 0.18 0"/>
+    </filter>
+    <rect width="128" height="128" filter="url(#c)"/>
+  </svg>`
+);
+
 export const BradaKaiStoryBlock: FC = () => (
   <Box
     component="section"
     sx={{
       bgcolor: BRADAKAI_CREAM,
-      pt: { xs: 10, md: 22 },
+      pt: { xs: 10, md: 14 },
       pb: { xs: 10, md: 22 },
     }}
   >
     <Container maxWidth="lg">
       <Box sx={{ maxWidth: 640, mx: 'auto', px: { xs: 0.5, sm: 0 } }}>
+        <Box
+          sx={{
+            mb: { xs: 2.5, md: 3 },
+            display: 'inline-block',
+            position: 'relative',
+            lineHeight: 0,
+            isolation: 'isolate',
+          }}
+        >
+          <BradaKaiMark width={{ xs: 44, sm: 52, md: 56 }} />
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url("data:image/svg+xml,${storyMarkFineGrain}")`,
+              backgroundSize: '48px 48px',
+              mixBlendMode: 'screen',
+              opacity: 0.42,
+              pointerEvents: 'none',
+            }}
+          />
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url("data:image/svg+xml,${storyMarkCoarseGrain}")`,
+              backgroundSize: '64px 64px',
+              mixBlendMode: 'soft-light',
+              opacity: 0.28,
+              pointerEvents: 'none',
+            }}
+          />
+        </Box>
         <Typography
           component="h2"
           sx={{
