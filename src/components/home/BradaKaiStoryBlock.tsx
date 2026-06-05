@@ -59,8 +59,7 @@ export const BradaKaiStoryBlock: FC = () => (
         <Typography sx={{ ...bodySx, mb: 2 }}>BradaKai was born from that belief.</Typography>
 
         <Typography sx={{ ...bodySx, mb: { xs: 3, md: 4 } }}>
-          A respect for the ocean. For the people who protect it. For the ones who understand that the sea gives
-          everything and takes everything back.
+          A respect for the ocean. For those who understand that the sea is never conquered, only borrowed from.
         </Typography>
 
         <Typography sx={{ ...bodySx, color: BRADAKAI_NAVY, mb: 0 }}>

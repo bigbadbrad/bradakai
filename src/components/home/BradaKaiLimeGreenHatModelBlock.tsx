@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 import { Box, Typography } from '@mui/material';
+import { BradaKaiWeatheredMark } from '@/components/bradakai-weathered-mark';
 import { HomepageEditorialSection } from '@/components/home/homepage-editorial-section';
 import { LOVE_FASHION_EDITORIAL_FRAME_ENABLED } from '@/lib/homepage/editorial-frame-experiment';
 import { BRADAKAI_CREAM, BRADAKAI_NAVY, BRADAKAI_NAVY_MUTED } from '@/lib/bradakai/brand';
@@ -28,6 +29,8 @@ export const BradaKaiLimeGreenHatModelBlock: FC = () => (
     editorialFrame={LOVE_FASHION_EDITORIAL_FRAME_ENABLED}
   >
     <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+      <BradaKaiWeatheredMark sx={{ mb: { xs: 1.5, md: 2 } }} />
+
       <Typography
         component="h2"
         sx={{

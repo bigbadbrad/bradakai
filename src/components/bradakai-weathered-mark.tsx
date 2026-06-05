@@ -25,7 +25,7 @@ const coarseGrain = encodeURIComponent(
   </svg>`
 );
 
-const defaultWidth = { xs: 40, sm: 48, md: 52 };
+const defaultWidth = { xs: 32, sm: 38, md: 42 };
 
 type BradaKaiWeatheredMarkProps = {
   width?: { xs?: number; sm?: number; md?: number };
@@ -55,7 +55,7 @@ export const BradaKaiWeatheredMark: FC<BradaKaiWeatheredMarkProps> = ({
         position: 'absolute',
         inset: 0,
         backgroundImage: `url("data:image/svg+xml,${fineGrain}")`,
-        backgroundSize: '48px 48px',
+        backgroundSize: '40px 40px',
         mixBlendMode: 'screen',
         opacity: 0.42,
         pointerEvents: 'none',
@@ -67,7 +67,7 @@ export const BradaKaiWeatheredMark: FC<BradaKaiWeatheredMarkProps> = ({
         position: 'absolute',
         inset: 0,
         backgroundImage: `url("data:image/svg+xml,${coarseGrain}")`,
-        backgroundSize: '64px 64px',
+        backgroundSize: '52px 52px',
         mixBlendMode: 'soft-light',
         opacity: 0.28,
         pointerEvents: 'none',
