@@ -11,7 +11,15 @@ import {
   BRADAKAI_NAVY_MUTED,
   bradakaiDisplaySx,
 } from '@/lib/bradakai/brand';
-const FEATURED_TEES = [
+
+const HERO_PRODUCT = {
+  src: '/products/first-shirt-distressed.png',
+  alt: 'BradaKai distressed first shirt',
+  width: 1122,
+  height: 1402,
+} as const;
+
+const FEATURED_PRODUCTS = [
   {
     src: '/product1.png',
     alt: 'BradaKai product 1 tee',
@@ -68,6 +76,33 @@ const FEATURED_TEES = [
   //   label: 'Breathable hat red white blue',
   // },
 ] as const;
+
+function ProductCard({
+  src,
+  alt,
+  sizes,
+  aspectRatio = '1 / 1',
+}: {
+  src: string;
+  alt: string;
+  sizes: string;
+  aspectRatio?: string;
+}) {
+  return (
+    <Box
+      sx={{
+        bgcolor: '#fff',
+        borderRadius: 0.5,
+        overflow: 'hidden',
+        boxShadow: '0 4px 20px rgba(30,58,95,0.08)',
+      }}
+    >
+      <Box sx={{ position: 'relative', aspectRatio }}>
+        <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: 'cover' }} />
+      </Box>
+    </Box>
+  );
+}
 
 export const BradaKaiFeaturedBlock: FC = () => (
   <Box
@@ -146,29 +181,35 @@ export const BradaKaiFeaturedBlock: FC = () => (
           </Typography>
         </Box>
 
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-            gap: { xs: 1.5, md: 2 },
-          }}
-        >
-          {FEATURED_TEES.map((tee) => (
-            <Box
-              key={tee.label}
-              sx={{
-                bgcolor: '#fff',
-                borderRadius: 0.5,
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(30,58,95,0.08)',
-              }}
-            >
-              <Box sx={{ position: 'relative', aspectRatio: '1 / 1' }}>
-                <Image src={tee.src} alt={tee.alt} fill sizes="(max-width: 900px) 50vw, 220px" style={{ objectFit: 'cover' }} />
-              </Box>
-            </Box>
-          ))}
-        </Box>
+        <ProductCard
+          src={HERO_PRODUCT.src}
+          alt={HERO_PRODUCT.alt}
+          aspectRatio={`${HERO_PRODUCT.width} / ${HERO_PRODUCT.height}`}
+          sizes="(max-width: 900px) 100vw, 42vw"
+        />
+      </Box>
+
+      <Box
+        sx={{
+          mt: { xs: 5, md: 8 },
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: 'repeat(2, minmax(0, 1fr))',
+            sm: 'repeat(3, minmax(0, 1fr))',
+            md: 'repeat(4, minmax(0, 1fr))',
+            lg: 'repeat(5, minmax(0, 1fr))',
+          },
+          gap: { xs: 1.5, sm: 2, md: 2.5 },
+        }}
+      >
+        {FEATURED_PRODUCTS.map((product) => (
+          <ProductCard
+            key={product.label}
+            src={product.src}
+            alt={product.alt}
+            sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, (max-width: 1200px) 25vw, 20vw"
+          />
+        ))}
       </Box>
     </Container>
   </Box>
