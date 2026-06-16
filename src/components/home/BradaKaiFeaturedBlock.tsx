@@ -2,7 +2,7 @@
 
 import type { FC } from 'react';
 import Image from 'next/image';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, type SxProps, type Theme } from '@mui/material';
 import { BradaKaiWeatheredMark } from '@/components/bradakai-weathered-mark';
 import {
   BRADAKAI_CREAM,
@@ -13,13 +13,13 @@ import {
 } from '@/lib/bradakai/brand';
 
 const HERO_PRODUCT = {
-  src: '/products/first-shirt-distressed.png',
-  alt: 'BradaKai distressed first shirt',
+  src: '/products/north-shore-shirt-final.png',
+  alt: 'BradaKai North Shore shirt',
   width: 1122,
   height: 1402,
 } as const;
 
-const FEATURED_PRODUCTS = [
+const MAIN_PRODUCTS = [
   {
     src: '/product1.png',
     alt: 'BradaKai product 1 tee',
@@ -41,16 +41,6 @@ const FEATURED_PRODUCTS = [
     label: 'Hat white',
   },
   {
-    src: '/brown-hat-side.png',
-    alt: 'BradaKai brown hat side',
-    label: 'Brown hat side',
-  },
-  {
-    src: '/sand-hat-angle-black-no-puff.png',
-    alt: 'BradaKai sand hat angle',
-    label: 'Sand hat angle',
-  },
-  {
     src: '/breathable-hat-black-gray.png',
     alt: 'BradaKai breathable hat black gray',
     label: 'Breathable hat black gray',
@@ -70,11 +60,19 @@ const FEATURED_PRODUCTS = [
     alt: 'BradaKai breathable hat gray green',
     label: 'Breathable hat gray green',
   },
-  // {
-  //   src: '/breadable-hat-red-white-blue.png',
-  //   alt: 'BradaKai breathable hat red white blue',
-  //   label: 'Breathable hat red white blue',
-  // },
+] as const;
+
+const SAND_HATS = [
+  {
+    src: '/brown-hat-side.png',
+    alt: 'BradaKai brown hat side',
+    label: 'Brown hat side',
+  },
+  {
+    src: '/sand-hat-angle-black-no-puff.png',
+    alt: 'BradaKai sand hat angle',
+    label: 'Sand hat angle',
+  },
 ] as const;
 
 function ProductCard({
@@ -82,20 +80,25 @@ function ProductCard({
   alt,
   sizes,
   aspectRatio = '1 / 1',
+  sx,
 }: {
   src: string;
   alt: string;
   sizes: string;
   aspectRatio?: string;
+  sx?: SxProps<Theme>;
 }) {
   return (
     <Box
-      sx={{
-        bgcolor: '#fff',
-        borderRadius: 0.5,
-        overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(30,58,95,0.08)',
-      }}
+      sx={[
+        {
+          bgcolor: '#fff',
+          borderRadius: 0.5,
+          overflow: 'hidden',
+          boxShadow: '0 4px 20px rgba(30,58,95,0.08)',
+        },
+        ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
+      ]}
     >
       <Box sx={{ position: 'relative', aspectRatio }}>
         <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: 'cover' }} />
@@ -196,18 +199,29 @@ export const BradaKaiFeaturedBlock: FC = () => (
           gridTemplateColumns: {
             xs: 'repeat(2, minmax(0, 1fr))',
             sm: 'repeat(3, minmax(0, 1fr))',
-            md: 'repeat(4, minmax(0, 1fr))',
-            lg: 'repeat(5, minmax(0, 1fr))',
+            md: 'repeat(4, minmax(0, 1fr)) minmax(0, 1fr)',
           },
           gap: { xs: 1.5, sm: 2, md: 2.5 },
         }}
       >
-        {FEATURED_PRODUCTS.map((product) => (
+        {MAIN_PRODUCTS.map((product) => (
           <ProductCard
             key={product.label}
             src={product.src}
             alt={product.alt}
             sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, (max-width: 1200px) 25vw, 20vw"
+          />
+        ))}
+        {SAND_HATS.map((hat, index) => (
+          <ProductCard
+            key={hat.label}
+            src={hat.src}
+            alt={hat.alt}
+            sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, (max-width: 1200px) 25vw, 20vw"
+            sx={{
+              gridColumn: { md: 5 },
+              gridRow: { md: index + 1 },
+            }}
           />
         ))}
       </Box>
